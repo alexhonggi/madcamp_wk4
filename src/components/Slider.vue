@@ -5,7 +5,7 @@
   @mouseup="mouseupevent($event,0)" 
   @click="clickevent($event,0)" class="slider" ref="slider1ref">
     <div class="innerSlider" ref="innerSlider1ref" :style="{left:sliderleftlist[0].left+'px'}">
-        <div class = "slideitem" :style="{backgroundColor:itemlist1[index].color}" v-bind:key="item" v-for="(item, index) in itemlist1">{{item.name}}</div>
+        <div class = "slideitem" :style="{backgroundColor:itemlist1[index].color}" v-bind:key="item" v-for="(item, index) in itemlist1"></div>
     </div>
   </div>
   <div @mousedown="mousedownevent($event,1)"
@@ -13,15 +13,16 @@
   @mouseup="mouseupevent($event,1)"
    @click="clickevent($event,1)" class="slider" :style="{top:'45%'}">
     <div class="innerSlider" :style="{left:sliderleftlist[1].left+'px'}">
-        <div class = "slideitem" :style="{backgroundColor:itemlist2[index].color}" v-bind:key="item" v-for="(item, index) in itemlist1">{{item.name}}</div>
+        <div class = "slideitem" :style="{backgroundColor:itemlist2[index].color}" v-bind:key="item" v-for="(item, index) in itemlist2"></div>
     </div>
   </div>
   <div @mousedown="mousedownevent($event,2)"
   @mousemove="mousemoveevent($event,2)"
   @mouseup="mouseupevent($event,2)"
-   @click="clickevent($event,2)" class="slider" :style="{top:'70%'}">
+   @click="clickevent($event,2)"
+   @scroll="scrollevent($event)" class="slider" :style="{top:'70%'}">
     <div class="innerSlider" :style="{left:sliderleftlist[2].left+'px'}">
-        <div class = "slideitem" :style="{backgroundColor:itemlist3[index].color}" v-bind:key="item" v-for="(item, index) in itemlist1">{{item.name}}</div>
+        <div class = "slideitem" :style="{backgroundColor:itemlist3[index].color}" v-bind:key="item" v-for="(item, index) in itemlist3"></div>
     </div>
   </div>
 </div>
@@ -38,22 +39,31 @@ export default {
             itemlist1:[],
             itemlist2:[],
             itemlist3:[],
-            sliderleftlist:[{left:0},{left:-120},{left:-40}],
+            sliderleftlist:[{left:0},{left:-120},{left:-200}],
             startx:[0,0,0],
             x:0,
-            vx:0,
+            vx:0.3,
             pressed:false,
             isdrag:false,
-            leftconstraint:[0,-120, -40]
+            leftconstraint:[0,-120, -200]
         }
     },
     mounted() {
         for(let i=0;i<10;i++){
-            const colorlist = ["#ffff00", "#ff00ff", "#00ffff"]
+            const colorlist = ["#ff0066", "#0044ff", "#ffff00"]
             this.itemlist1.push({id:i, name:i.toString(), color:colorlist[i%3]})
             this.itemlist2.push({id:i, name:i.toString(), color:colorlist[(i+1)%3]})
             this.itemlist3.push({id:i, name:i.toString(), color:colorlist[(i+2)%3]})
         }
+        setInterval(()=>{
+            this.sliderleftlist[0].left+=this.vx;
+            this.checkBoundry(0);
+            this.sliderleftlist[1].left+=this.vx;
+            this.checkBoundry(0);
+            this.sliderleftlist[2].left+=this.vx;
+            this.checkBoundry(0);
+        },10)
+        
     },
     beforeDestroy(){
 
@@ -87,9 +97,11 @@ export default {
             const gap  = this.$refs.innerSlider1ref.clientWidth - this.$refs.slider1ref.clientWidth ;
             if(this.sliderleftlist[index].left>this.leftconstraint[index]){
                 this.sliderleftlist[index].left=this.leftconstraint[index];
+                this.vx*=(-1);
             }
             else if(gap<-this.sliderleftlist[index].left+this.leftconstraint[index]){
                 this.sliderleftlist[index].left=-gap+this.leftconstraint[index]
+                this.vx*=(-1);
             }
         },
         clickevent(event, index){
@@ -97,6 +109,9 @@ export default {
                 const ind = Math.floor((event.offsetX-this.sliderleftlist[index].left)/240)
                 console.log("("+ind+","+index+")");
             }
+        },
+        scrollevent(event){
+            console.log(event);
         }
     },
     computed:{

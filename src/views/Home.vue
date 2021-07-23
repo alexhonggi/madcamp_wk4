@@ -30,12 +30,4 @@ export default {
 </script>
 
 <style scoped>
-body{
-  overflow: hidden;
-}
-.home{
-  background: black;
-  width:100vw;
-  height: 100vh;
-}
 </style>
