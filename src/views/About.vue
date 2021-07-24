@@ -1,5 +1,15 @@
 <template>
   <div class="about">
-    <h1>This is an about page</h1>
+    <input-form></input-form>
   </div>
 </template>
+
+<script>
+import InputForm from '../components/InputForm.vue';
+
+export default {
+  components: {
+    InputForm
+  }
+}
+</script>
