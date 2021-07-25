@@ -11,7 +11,7 @@
   <div @mousedown="mousedownevent($event,1)"
   @mousemove="mousemoveevent($event,1)"
   @mouseup="mouseupevent($event,1)"
-   @click="clickevent($event,1)" class="slider" :style="{top:'45%'}">
+   @click="clickevent($event,1)" class="slider" :style="{top:'47vh'}">
     <div class="innerSlider" :style="{left:sliderleftlist[1].left+'px'}">
         <div class = "slideitem" :style="{backgroundColor:itemlist2[index].color}" v-bind:key="item" v-for="(item, index) in itemlist2"></div>
     </div>
@@ -20,7 +20,7 @@
   @mousemove="mousemoveevent($event,2)"
   @mouseup="mouseupevent($event,2)"
    @click="clickevent($event,2)"
-   @scroll="scrollevent($event)" class="slider" :style="{top:'70%'}">
+   @scroll="scrollevent($event)" class="slider" :style="{top:'74vh'}">
     <div class="innerSlider" :style="{left:sliderleftlist[2].left+'px'}">
         <div class = "slideitem" :style="{backgroundColor:itemlist3[index].color}" v-bind:key="item" v-for="(item, index) in itemlist3"></div>
     </div>
@@ -39,31 +39,36 @@ export default {
             itemlist1:[],
             itemlist2:[],
             itemlist3:[],
-            sliderleftlist:[{left:0},{left:-120},{left:-200}],
+            sliderleftlist:[{left:0},{left:-120},{left:-280}],
             startx:[0,0,0],
             x:0,
             vx:0.3,
             pressed:false,
             isdrag:false,
-            leftconstraint:[0,-120, -200]
+            leftconstraint:[0,-120, -280],
+            stop:false,
         }
     },
     mounted() {
-        for(let i=0;i<10;i++){
+        for(let i=0;i<15;i++){
             const colorlist = ["#ff0066", "#0044ff", "#ffff00"]
-            this.itemlist1.push({id:i, name:i.toString(), color:colorlist[i%3]})
-            this.itemlist2.push({id:i, name:i.toString(), color:colorlist[(i+1)%3]})
-            this.itemlist3.push({id:i, name:i.toString(), color:colorlist[(i+2)%3]})
+            this.itemlist1.push({id:i, name:i.toString(), color:colorlist[i%3]});
+            this.itemlist2.push({id:i, name:i.toString(), color:colorlist[(i+1)%3]});
+            this.itemlist3.push({id:i, name:i.toString(), color:colorlist[(i+2)%3]});
         }
-        setInterval(()=>{
-            this.sliderleftlist[0].left+=this.vx;
-            this.checkBoundry(0);
-            this.sliderleftlist[1].left+=this.vx;
-            this.checkBoundry(0);
-            this.sliderleftlist[2].left+=this.vx;
-            this.checkBoundry(0);
+        setInterval(()=>{            
+            if(this.stop){
+
+            }
+            else{
+                this.sliderleftlist[0].left+=this.vx;
+                this.checkBoundry(0);
+                this.sliderleftlist[1].left+=this.vx;
+                this.checkBoundry(1);
+                this.sliderleftlist[2].left+=this.vx;
+                this.checkBoundry(2);
+            }
         },10)
-        
     },
     beforeDestroy(){
 
@@ -90,8 +95,13 @@ export default {
             this.isdrag=true;
         },
         mouseupevent(event, index){
+            if(this.isdrag){
+                this.stop=true;
+                setTimeout(()=>{
+                this.stop=false;
+                },2000);
+            }
             this.pressed=false;
-            this.isdrag=false;
         },
         checkBoundry(index) {
             const gap  = this.$refs.innerSlider1ref.clientWidth - this.$refs.slider1ref.clientWidth ;
@@ -108,6 +118,13 @@ export default {
             if(!this.isdrag){
                 const ind = Math.floor((event.offsetX-this.sliderleftlist[index].left)/240)
                 console.log("("+ind+","+index+")");
+                if(this.stop){
+                    this.stop=false;
+                }else{
+                    this.stop=true;
+                }
+            }else{
+                this.isdrag=false;
             }
         },
         scrollevent(event){
@@ -147,10 +164,10 @@ template{
 }
 .slider {
   position: absolute;
-  left: 10%;
+  left: 0;
   top: 20%;
-  width: 80%;
-  height: 23vh;
+  width: 100%;
+  height: 25vh;
   overflow: hidden;
   align-items: center;
 }
@@ -160,19 +177,20 @@ template{
   top: 0;
   right: 0;
   height: 100%;
-  width: 2500px;
+  width: 450vh;
   display: grid;
-  grid-template-columns: repeat(10, 230px);
-  gap: 10px;
+  grid-template-columns: repeat(15, 43vh);
+  gap: 1.5vh;
   pointer-events: none;
   transition: 0s ease-in;
 }
 .slideitem{
-  height: 100%;
-  background-color: gray;
+  height: 25vh;
+  width: 43vh;
   font-size: 16pt;
   font-family: "titlehandwrites";
   border-radius: 10px;
   text-align: center;
+  transition: .5s;
 }
 </style>
