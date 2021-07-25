@@ -1,47 +1,78 @@
 <template>
     <div>
-        <button @click="handleClickSignIn" v-if="!isSignIn" :disabled="!isInit">signIn</button>
-        <button @click="handleClickSignOut" v-if="isSignIn" :disabled="!isInit">signOut</button>
+        <h1>IsInit: {{ Vue3GoogleOauth.isInit }}</h1>
+        <h1>IsAuthorized: {{ Vue3GoogleOauth.isAuthorized }}</h1>
+        <h2 v-if="user">signed user: {{user}}</h2>
+        <button @click="handleClickSignIn" :disabled="!Vue3GoogleOauth.isInit || Vue3GoogleOauth.isAuthorized">sign in</button>
+        <button @click="handleClickGetAuthCode" :disabled="!Vue3GoogleOauth.isInit">get authCode</button>
+        <button @click="handleClickSignOut" :disabled="!Vue3GoogleOauth.isAuthorized">sign out</button>
+        <button @click="handleClickDisconnect" :disabled="!Vue3GoogleOauth.isAuthorized">disconnect</button>
     </div>
 </template>
 <script>
-
+import { inject, toRefs } from "vue";
 export default {
     data() {
         return {
-            isInit: false,
-            isSignIn: false
+            user: '',
         }
     },
     components: {
     },
     methods: {
         async handleClickSignIn(){
-            try{
+            try {
                 const googleUser = await this.$gAuth.signIn();
-                console.log('user', googleUser);
-                this.isSignIn = this.$gAuth.isAuthorized;
-            } catch(error){
-                console.log(error);
+                if (!googleUser) {
+                    return null;
+                }
+                console.log("googleUser", googleUser);
+                this.user = googleUser.getBasicProfile().getEmail();
+                console.log("getId", this.user);
+                console.log("getBasicProfile", googleUser.getBasicProfile());
+                console.log("getAuthResponse", googleUser.getAuthResponse());
+                console.log(
+                    "getAuthResponse",
+                    this.$gAuth.instance.currentUser.get().getAuthResponse()
+                );
+            } catch (error) {
+                //on fail do something
+                console.error(error);
                 return null;
             }
         },
-        async handleClickSignOut(){
-            try{
-                await this.$gAuth.signOut();
-                this.isSignIn = this.$gAuth.isAuthorized;
-            } catch(error){
-                console.log(error);
+        async handleClickGetAuthCode(){
+            try {
+                const authCode = await this.$gAuth.getAuthCode();
+                console.log("authCode", authCode);
+            } catch(error) {
+                //on fail do something
+                console.error(error);
+                return null;
             }
         },
-        mounted(){
-            let that = this;
-            let checkGauthLoad = setInterval(function(){
-                that.isInit = that.$gAuth.isInit;
-                that.isSignIn = that.$gAuth.isAuthorized;
-                if(that.isInit) clearInterval(checkGauthLoad);
-            }, 1000);
-        }
+        async handleClickSignOut() {
+            try {
+                await this.$gAuth.signOut();
+                console.log("isAuthorized", this.Vue3GoogleOauth.isAuthorized);
+                this.user = "";
+            } catch (error) {
+                console.error(error);
+            }
+        },
+        handleClickDisconnect() {
+            window.location.href = `https://www.google.com/accounts/Logout?continue=https://appengine.google.com/_ah/logout?continue=${window.location.href}`;
+        },
+    },
+    setup(props) {
+        const { isSignIn } = toRefs(props);
+        const Vue3GoogleOauth = inject("Vue3GoogleOauth");
+        const handleClickLogin = () => {};
+        return {
+            Vue3GoogleOauth,
+            handleClickLogin,
+            isSignIn,
+        };
     }
 }
 </script>

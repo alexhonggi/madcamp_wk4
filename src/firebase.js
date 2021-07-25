@@ -18,12 +18,12 @@ const usersCollection = db.collection('users');
 
 const storageRef = firebase.storage().ref('userProfile');
 
-export const createUser = user => {
-    return usersCollection.doc(user.name).set(user);
+export const createUser = (googleId, user) => {
+    return usersCollection.doc(googleId).set(user);
 }
 
-export const uploadFile  = (name, file) => {
-    storageRef.child(name).put(file);
+export const uploadFile  = (googleId, file) => {
+    storageRef.child(googleId).put(file);
 }
 
 export const getUser = async id => {

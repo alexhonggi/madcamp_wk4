@@ -44,9 +44,10 @@ export default {
                 description: this.description,
                 dream: this.dream,
                 like: []
-            }
-            createUser(user);
-            uploadFile(user.name, this.image);
+            };
+            const googleId = this.$gAuth.instance.currentUser.get().getBasicProfile().getEmail();
+            createUser(googleId, user);
+            uploadFile(googleId, this.image);
             this.image = '';
             this.name = '';
             this.profession = '';
