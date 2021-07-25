@@ -1,13 +1,22 @@
 <template>
   <div id="demo">
     <transition name="fade">
-      <p @click="show = !show" class = "front1" v-bind:key="show" v-if="!show">333</p>
+      <p @click="show = !show ; pass = true ; pass2 = false" class = "front1" v-bind:key="show" v-if="!show">A_front</p>
     </transition>
     <transition name="fade3">
-      <p class = "back1" v-bind:key="show" v-if="!show">555</p>
+      <p class = "back1" v-bind:key="show" v-if="!show">A_back</p>
+    </transition>
+    <transition name="fade">
+      <p @click="show = !show ; pass2 = !pass2 ; pass = false" class = "front1" v-bind:key="show" v-if="show">B_front</p>
+    </transition>
+    <transition name="fade3">
+      <p class = "back1" v-bind:key="show" v-if="show">B_back</p>
     </transition>
     <transition name="fade2">
-      <p @click="show = !show" class = "box2" v-bind:key="show" v-if="show">555</p>
+      <p @click="pass = false" class = "box2" v-bind:key="show" v-if="pass">A_back</p>
+    </transition>
+    <transition name="fade2">
+      <p @click="pass2 = false" class = "box2" v-bind:key="show" v-if="pass2">B_back</p>
     </transition>
   </div>
 </template>
@@ -17,7 +26,9 @@
   name: 'Home',
   data(){
     return{
-      show:true
+      show:false,
+      pass:false,
+      pass2:false,
     }
   },
 }
@@ -29,37 +40,48 @@
 .fade-enter-active, .fade-leave-active{
   transition: all 0.5s ease;
 }
-.fade-leave-to, .fade-enter-from{
-  transform: rotateY(180deg) translateX(320px);
+.fade-leave-to{
+  transform: rotateY(180deg) translateX(59vh);
+}
+.fade-enter-from{
+  opacity: 0;
 }
 
 .fade3-enter-active, .fade3-leave-active{
   transition: all 0.5s ease;
 }
+.fade3-enter-active{
+  transition-delay: .5s;
+}
 .fade3-leave-from , .fade3-enter-to{
   transform:rotateY(180deg);
 }
-.fade3-leave-to, .fade3-enter-from{
-  transform: translateX(320px) rotateY(0);
+.fade3-leave-to {
+  transform: translateX(59vh) rotateY(0);
+}
+.fade3-enter-from{
+  opacity: 0;
 }
 
 .fade2-enter-active {
-  transition-delay: 0.5s;
+  transition-delay: 0.5s
 }
 .fade2-leave-active {
-  display: none;
+  transition: all 0.5s ease;
 }
 .fade2-leave-to, .fade2-enter-from{
   opacity: 0;
+  transform: translateX(100px);
 }
 
 .front1{
   color:aquamarine;
   font-size:30pt;
-  width:300px;
-  height:500px;
-  left:0px;
+  width:50vh;
+  height:75vh;
+  left:40vh;
   position: absolute;
+  top:10vh;
   background: olive;
   z-index: 2;
   -webkit-backface-visibility: hidden;  /* Chrome, Safari, Opera */
@@ -68,10 +90,11 @@
 .back1{
   color:aquamarine;
   font-size:30pt;
-  width:300px;
-  height:500px;
-  left:0px;
+  width:50vh;
+  height:75vh;
+  left:40vh;
   position: absolute;
+  top:10vh;
   background: white;
   z-index: 1;
   -webkit-backface-visibility: hidden;  /* Chrome, Safari, Opera */
@@ -81,9 +104,10 @@
   color:aquamarine;
   font-size:30pt;
   background: white;
-  width:300px;
-  height:500px;
-  margin-left:300px;
+  width:50vh;
+  top:10vh;
+  height:75vh;
+  left:99vh;
   position: absolute;
 }
 </style>
