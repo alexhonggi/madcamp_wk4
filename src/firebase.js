@@ -16,8 +16,14 @@ const firebaseApp = firebase.initializeApp(config);
 const db = firebaseApp.firestore();
 const usersCollection = db.collection('users');
 
+const storageRef = firebase.storage().ref('userProfile');
+
 export const createUser = user => {
     return usersCollection.doc(user.name).set(user);
+}
+
+export const uploadFile  = (name, file) => {
+    storageRef.child(name).put(file);
 }
 
 export const getUser = async id => {
