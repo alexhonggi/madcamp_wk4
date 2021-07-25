@@ -1,16 +1,15 @@
 <template>
 <body>
   <div class="home">
-    <Slider/>
+    <Maincard/>
   </div>
 </body>
 </template>
 
 <script>
 // @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
 import Slider from '@/components/Slider.vue'
-
+import Maincard from '@/components/Maincard.vue'
 export default {
   name: 'Home',
   data(){
@@ -23,8 +22,7 @@ export default {
 
   },
   components: {
-    HelloWorld,
-    Slider
+    Maincard
   }
 }
 </script>
