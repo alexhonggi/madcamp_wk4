@@ -8,10 +8,12 @@
         </p>
       </header>
       
-      <div class="name-card-grid">
+      <div class="name-card-grid" v-if="dataReady">
         <article
           class="name-card module module-article article"
           id="name-post-302186"
+          v-for="user in userData"
+          :key="user.name"
         >
           <header class="name-article-card-header">
             <div class="name-article-card-title">
@@ -24,7 +26,7 @@
                   href="https://css-tricks.com/use-and-reuse-everything-in-svg-even-animations/"
                   class="article-card-header read-article"
                 >
-                  김철환
+                  {{user.name}}
                 </a>
               </h2>
             </div>
@@ -37,7 +39,7 @@
                 >
                   <img
                     alt=""
-                    src="https://secure.gravatar.com/avatar/d478c83f5a06bd37f7087e19478b74bf?s=80&amp;d=retro&amp;r=pg"
+                    :src="user.profileImage"
                     class="
                       avatar avatar-80
                       photo
@@ -72,401 +74,44 @@
                   class="author-name"
                   href="https://css-tricks.com/author/marianabeldi/"
                 >
-                  Designer
+                  {{user.profession}}
                 </a>
               </div>
-            <!-- <div class="tags">
-              <a href="https://css-tricks.com/tag/svg/" rel="tag">SVG</a>
-              <a href="https://css-tricks.com/tag/svg-animation/" rel="tag"
-                >SVG animation</a
-              >
-            </div> -->
           </div>
           </header>
         </article>
-        <!-- <article
-          class="name-card module module-article article"
-          id="name-post-302263"
-        >
-          <header class="name-article-card-header">
-            <div class="name-article-card-title">
-              <div class="name-article-subhead">
-                Article
-                <time datetime="2020-01-27"> Jan 27, 2020 </time>
-              </div>
-              <h2 class="">
-                <a
-                  href="https://css-tricks.com/what-does-revert-do-in-css/"
-                  class="article-card-header read-article"
-                >
-                  김윤재
-                </a>
-              </h2>
-            </div>
-          </header>
-          <div class="name-article-meta">
-            <div class="name-article-byline">
-              <div class="author-avatar">
-                <a
-                  class="author-name"
-                  href="https://css-tricks.com/author/chriscoyier/"
-                >
-                  <img
-                    alt=""
-                    src="https://secure.gravatar.com/avatar/8081b26e05bb4354f7d65ffc34cbbd67?s=80&amp;d=retro&amp;r=pg"
-                    class="
-                      avatar avatar-80
-                      photo
-                      jetpack-lazy-image jetpack-lazy-image--handled
-                    "
-                    height="80"
-                    width="80"
-                    srcset="
-                      https://secure.gravatar.com/avatar/8081b26e05bb4354f7d65ffc34cbbd67?s=160&amp;d=retro&amp;r=pg 2x
-                    "
-                    data-lazy-loaded="1"
-                  /><noscript
-                    ><img
-                      alt=""
-                      src="https://secure.gravatar.com/avatar/8081b26e05bb4354f7d65ffc34cbbd67?s=80&#038;d=retro&#038;r=pg"
-                      srcset="
-                        https://secure.gravatar.com/avatar/8081b26e05bb4354f7d65ffc34cbbd67?s=160&#038;d=retro&#038;r=pg 2x
-                      "
-                      class="avatar avatar-80 photo"
-                      height="80"
-                      width="80"
-                  /></noscript>
-                </a>
-                <svg class="half-circle" width="80px" height="80px">
-                  <use xlink:href="#half-circle"></use>
-                </svg>
-              </div>
-            </div>
-            <div class="author-name-area">
-                <div class="author-name-prefix">Author</div>
-                <a
-                  class="author-name"
-                  href="https://css-tricks.com/author/chriscoyier/"
-                >
-                  Chris Coyier
-                </a>
-              </div>
-          </div>
-        </article>
-        <article
-          class="name-card module module-article article"
-          id="name-post-300744"
-        >
-          <header class="name-article-card-header">
-            <div class="name-article-card-title">
-              <div class="name-article-subhead">
-                Article
-                <time datetime="2020-01-01"> Jan 1, 2020 </time>
-              </div>
-              <h2 class="">
-                <a
-                  href="https://css-tricks.com/new-year-new-job-lets-make-a-grid-powered-resume/"
-                  class="article-card-header read-article"
-                >
-                  New Year, New Job? Let`s Make a Grid-Powered Resume!
-                </a>
-              </h2>
-            </div>
-          </header>
-          <div class="name-article-meta">
-            <div class="name-article-byline">
-              <div class="author-avatar">
-                <a
-                  class="author-name"
-                  href="https://css-tricks.com/author/alichurcher/"
-                >
-                  <img
-                    alt=""
-                    src="https://secure.gravatar.com/avatar/65b8591c0b8bb7e304163a8f6dfd8b20?s=80&amp;d=retro&amp;r=pg"
-                    class="
-                      avatar avatar-80
-                      photo
-                      jetpack-lazy-image jetpack-lazy-image--handled
-                    "
-                    height="80"
-                    width="80"
-                    srcset="
-                      https://secure.gravatar.com/avatar/65b8591c0b8bb7e304163a8f6dfd8b20?s=160&amp;d=retro&amp;r=pg 2x
-                    "
-                    data-lazy-loaded="1"
-                  /><noscript
-                    ><img
-                      alt=""
-                      src="https://secure.gravatar.com/avatar/65b8591c0b8bb7e304163a8f6dfd8b20?s=80&#038;d=retro&#038;r=pg"
-                      srcset="
-                        https://secure.gravatar.com/avatar/65b8591c0b8bb7e304163a8f6dfd8b20?s=160&#038;d=retro&#038;r=pg 2x
-                      "
-                      class="avatar avatar-80 photo"
-                      height="80"
-                      width="80"
-                  /></noscript>
-                </a>
-                <svg class="half-circle" width="80px" height="80px">
-                  <use xlink:href="#half-circle"></use>
-                </svg>
-              </div>
-              <div class="author-name-area">
-                <div class="author-name-prefix">Author</div>
-                <a
-                  class="author-name"
-                  href="https://css-tricks.com/author/alichurcher/"
-                >
-                  Ali Churcher
-                </a>
-              </div>
-            </div>
-            <div class="tags">
-              <a href="https://css-tricks.com/tag/grid/" rel="tag">grid</a>
-              <a href="https://css-tricks.com/tag/jobs/" rel="tag">jobs</a>
-              <a href="https://css-tricks.com/tag/print/" rel="tag">print</a>
-            </div>
-          </div>
-        </article>
-        <article
-          class="name-card module module-article article"
-          id="name-post-301107"
-        >
-          <header class="name-article-card-header">
-            <div class="name-article-card-title">
-              <div class="name-article-subhead">
-                Article
-                <time datetime="2020-01-09"> Jan 9, 2020 </time>
-              </div>
-              <h2 class="">
-                <a
-                  href="https://css-tricks.com/understanding-async-await/"
-                  class="article-card-header read-article"
-                >
-                  Understanding Async Await
-                </a>
-              </h2>
-            </div>
-          </header>
-          <div class="name-article-meta">
-            <div class="name-article-byline">
-              <div class="author-avatar">
-                <a
-                  class="author-name"
-                  href="https://css-tricks.com/author/sdrasner/"
-                >
-                  <img
-                    alt=""
-                    src="https://secure.gravatar.com/avatar/48cfd8342f9b9e5b7970f63afb0a8ee3?s=80&amp;d=retro&amp;r=pg"
-                    class="
-                      avatar avatar-80
-                      photo
-                      jetpack-lazy-image jetpack-lazy-image--handled
-                    "
-                    height="80"
-                    width="80"
-                    srcset="
-                      https://secure.gravatar.com/avatar/48cfd8342f9b9e5b7970f63afb0a8ee3?s=160&amp;d=retro&amp;r=pg 2x
-                    "
-                    data-lazy-loaded="1"
-                  /><noscript
-                    ><img
-                      alt=""
-                      src="https://secure.gravatar.com/avatar/48cfd8342f9b9e5b7970f63afb0a8ee3?s=80&#038;d=retro&#038;r=pg"
-                      srcset="
-                        https://secure.gravatar.com/avatar/48cfd8342f9b9e5b7970f63afb0a8ee3?s=160&#038;d=retro&#038;r=pg 2x
-                      "
-                      class="avatar avatar-80 photo"
-                      height="80"
-                      width="80"
-                  /></noscript>
-                </a>
-                <svg class="half-circle" width="80px" height="80px">
-                  <use xlink:href="#half-circle"></use>
-                </svg>
-              </div>
-              <div class="author-name-area">
-                <div class="author-name-prefix">Author</div>
-                <a
-                  class="author-name"
-                  href="https://css-tricks.com/author/sdrasner/"
-                >
-                  Sarah Drasner
-                </a>
-              </div>
-            </div>
-            <div class="tags">
-              <a href="https://css-tricks.com/tag/async/" rel="tag">async</a>
-              <a href="https://css-tricks.com/tag/asynchronous/" rel="tag"
-                >asynchronous</a
-              >
-              <a href="https://css-tricks.com/tag/await/" rel="tag">await</a>
-              <a href="https://css-tricks.com/tag/javascript/" rel="tag"
-                >JavaScript</a
-              >
-              <a href="https://css-tricks.com/tag/promises/" rel="tag"
-                >promises</a
-              >
-            </div>
-          </div>
-        </article>
-        <article
-          class="name-card module module-article article"
-          id="name-post-302289"
-        >
-          <header class="name-article-card-header">
-            <div class="name-article-card-title">
-              <div class="name-article-subhead">
-                Article
-                <time datetime="2020-01-23"> Jan 23, 2020 </time>
-              </div>
-              <h2 class="">
-                <a
-                  href="https://css-tricks.com/building-multi-directional-layouts/"
-                  class="article-card-header read-article"
-                >
-                  Building Multi-Directional Layouts
-                </a>
-              </h2>
-            </div>
-          </header>
-          <div class="name-article-meta">
-            <div class="name-article-byline">
-              <div class="author-avatar">
-                <a
-                  class="author-name"
-                  href="https://css-tricks.com/author/ahmadalfy/"
-                >
-                  <img
-                    alt=""
-                    src="https://secure.gravatar.com/avatar/981b46396a22bf5a8190506fe892b3b5?s=80&amp;d=retro&amp;r=pg"
-                    class="
-                      avatar avatar-80
-                      photo
-                      jetpack-lazy-image jetpack-lazy-image--handled
-                    "
-                    height="80"
-                    width="80"
-                    srcset="
-                      https://secure.gravatar.com/avatar/981b46396a22bf5a8190506fe892b3b5?s=160&amp;d=retro&amp;r=pg 2x
-                    "
-                    data-lazy-loaded="1"
-                  /><noscript
-                    ><img
-                      alt=""
-                      src="https://secure.gravatar.com/avatar/981b46396a22bf5a8190506fe892b3b5?s=80&#038;d=retro&#038;r=pg"
-                      srcset="
-                        https://secure.gravatar.com/avatar/981b46396a22bf5a8190506fe892b3b5?s=160&#038;d=retro&#038;r=pg 2x
-                      "
-                      class="avatar avatar-80 photo"
-                      height="80"
-                      width="80"
-                  /></noscript>
-                </a>
-                <svg class="half-circle" width="80px" height="80px">
-                  <use xlink:href="#half-circle"></use>
-                </svg>
-              </div>
-              <div class="author-name-area">
-                <div class="author-name-prefix">Author</div>
-                <a
-                  class="author-name"
-                  href="https://css-tricks.com/author/ahmadalfy/"
-                >
-                  Ahmad El-Alfy
-                </a>
-              </div>
-            </div>
-            
-          </div>
-        </article>
-        <article
-          class="name-card module module-article article"
-          id="name-post-301006"
-        >
-          <header class="name-article-card-header">
-            <div class="name-article-card-title">
-              <div class="name-article-subhead">
-                Collected at
-                <time datetime="2020-01-13"> Jan 13, 2020 </time>
-              </div>
-              <h2 class="">
-                <a
-                  href="https://css-tricks.com/how-to-animate-on-the-web-with-greensock/"
-                  class="article-card-header read-article"
-                >
-                  윤영훈
-                </a>
-              </h2>
-            </div>
-          </header>
-          <div class="name-article-meta">
-            <div class="name-article-byline">
-              <div class="author-avatar">
-                <a
-                  class="author-name"
-                  href="https://css-tricks.com/author/sdrasner/"
-                >
-                  <img
-                    alt=""
-                    src="https://secure.gravatar.com/avatar/48cfd8342f9b9e5b7970f63afb0a8ee3?s=80&amp;d=retro&amp;r=pg"
-                    class="
-                      avatar avatar-80
-                      photo
-                      jetpack-lazy-image jetpack-lazy-image--handled
-                    "
-                    height="80"
-                    width="80"
-                    srcset="
-                      https://secure.gravatar.com/avatar/48cfd8342f9b9e5b7970f63afb0a8ee3?s=160&amp;d=retro&amp;r=pg 2x
-                    "
-                    data-lazy-loaded="1"
-                  /><noscript
-                    ><img
-                      alt=""
-                      src="https://secure.gravatar.com/avatar/48cfd8342f9b9e5b7970f63afb0a8ee3?s=80&#038;d=retro&#038;r=pg"
-                      srcset="
-                        https://secure.gravatar.com/avatar/48cfd8342f9b9e5b7970f63afb0a8ee3?s=160&#038;d=retro&#038;r=pg 2x
-                      "
-                      class="avatar avatar-80 photo"
-                      height="80"
-                      width="80"
-                  /></noscript>
-                </a>
-                <svg class="half-circle" width="80px" height="80px">
-                  <use xlink:href="#half-circle"></use>
-                </svg>
-              </div>
-              <div class="author-name-area">
-                <div class="author-name-prefix">Author</div>
-                <a
-                  class="author-name"
-                  href="https://css-tricks.com/author/sdrasner/"
-                >
-                  Sarah Drasner
-                </a>
-              </div>
-            </div>
-          </div>
-        </article> -->
+      </div>
+      <div v-else>
+        <h1>else</h1>
       </div>
     </div>
   
 </template>
 
 <script>
+import {getUser, getLikes} from '../firebase.js';
+
 export default {
   name: 'Inputinformation',
   data(){
-    //   return {
-    //       inform:{
-    //           name:"이름",
-    //           job:"직업",
-    //           introduction:"소개",
-    //       }
-    //   }
+    return {
+      userData: [],
+      dataReady: false,
+    }
   },
   mounted(){
-
+    let googleId;
+    setTimeout(async ()=>{
+      googleId = this.$gAuth.instance.currentUser.get().getBasicProfile().getEmail();
+      console.log(googleId);
+      const user = await getUser(googleId);
+      const likes = user.like;
+      const dataList = await getLikes(likes);
+      this.userData = dataList;
+      console.log(dataList);
+      console.log(this.userData);
+      this.dataReady = true;
+    }, 1500);
   },
   props: {
 

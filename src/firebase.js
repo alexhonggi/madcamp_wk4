@@ -32,6 +32,16 @@ export const getUser = async googleId => {
     return user.exists ? user.data() : null;
 }
 
+export const getLikes = async likes => {
+    var likeUserData = [];
+    for(var like in likes){
+        var userData = await getUser(likes[like]);
+        likeUserData.push(userData);
+        console.log('array: ',likeUserData)
+    }
+    return likeUserData;
+}
+
 export const getAllData = async () => {
     const snapshot = await usersCollection.get();
     // console.log(snapshot);
