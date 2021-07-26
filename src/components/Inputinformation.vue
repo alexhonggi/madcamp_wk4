@@ -15,6 +15,7 @@
           v-for="user in userData"
           :key="user.name"
         >
+        <div class="container">
           <header class="name-article-card-header">
             <div class="name-article-card-title">
               <div class="name-article-subhead">
@@ -79,6 +80,7 @@
               </div>
           </div>
           </header>
+          </div>
         </article>
       </div>
       <div v-else>

@@ -30,4 +30,7 @@ export default {
 </script>
 
 <style scoped>
+body {
+  background: linear-gradient(90deg, #ff8a00, #e52e71,#ff8a00 );
+}
 </style>

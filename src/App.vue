@@ -17,6 +17,7 @@
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
+  
 }
 
 #nav {
@@ -39,6 +40,7 @@ body{
   scroll-behavior: smooth;
   overflow-x: hidden;
   overflow-y: auto;
+  
 }
 body::-webkit-scrollbar {
     display: none; /* Chrome, Safari, Opera*/

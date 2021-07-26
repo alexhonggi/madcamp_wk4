@@ -1,11 +1,12 @@
 <template>
-  <div>
+  <div class="just">
     <transition name=list>
       <div id=toggleButton @click="toggleClick" v-if="!toggleButton"></div>
     </transition>
     <div v-if="toggleButton" class="grid">
       <transition-group name="list">
         <div @click="cardClick(index)" v-for="(item, index) in messages" :key="index" class="block" :class="[classnamearray[index%5], flipAnimationlist[index]]">{{item.intro}}
+            <div class="bx"></div>
             <div :class="animationList[index]" id=heart @click="heartClick(index); isHeartclicked=true">
               <div id=heartbefore :style="{backgroundColor:heartcolor[index]}"></div>
               <div id=heartafter :style="{backgroundColor:heartcolor[index]}"></div>
@@ -70,6 +71,9 @@ export default {
 </script>
 
 <style>
+.just {
+  background: linear-gradient(90deg, #ff8a00, #e52e71,#ff8a00 );
+}
 .grid {
   display: flex;
   flex-wrap: wrap;
@@ -79,6 +83,8 @@ export default {
   margin-right:1vw;
 }
 .block {
+  opacity: 1;
+  border-radius: 10px;
   background-color: #eeeeee;
   display: block;
   padding: 20px;
@@ -90,6 +96,18 @@ export default {
   height: 25vw;
   margin-left:1vw;
   transition: .5s;
+  box-shadow: 3px 3px ;
+}
+
+.bx {
+  position: relative;
+  width:40px;
+  height: 7px;
+  background-color: #ff0000;
+  background: linear-gradient(90deg, #e52e71,#ff8a00 );
+  z-index:5;
+  margin-top: 10px;
+  
 }
 .margin{
     margin-top:8vh;
