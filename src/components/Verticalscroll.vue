@@ -6,9 +6,8 @@
     <div v-if="toggleButton" class="grid">
       <transition-group name="list"> 
         <div @click="cardClick(index)" v-for="(item, index) in messages" :key="index" class="block" :class="[classnamearray[index%5]]">
-          <div class="bx"></div>
-          <div class=frontcard :class="[flipAnimationlist[index]]"></div>
-          <div class=backcard :class="[flipAnimationlist[index]]"></div>
+          <div class=frontcard :class="[flipAnimationlist[index]]"><div class="bx"></div></div>
+          <div class=backcard :class="[flipAnimationlist[index]]"><div class="bx"></div></div>
           <div :class="[animationList[index], flipAnimationlist[index]]" id=heart @click="heartClick(index); isHeartclicked=true">
             <div id=heartbefore :style="{backgroundColor:heartcolor[index]}"></div>
             <div id=heartafter :style="{backgroundColor:heartcolor[index]}"></div>
@@ -49,7 +48,7 @@ export default {
       },
       toggleClick(){
         this.toggleButton=!this.toggleButton;
-        for(let i=0;i<10;i++){
+        for(let i=0;i<100;i++){
             setTimeout(() => {
               this.messages.push({intro:i+"입니다."})
             }, 500+i*50>1000?1000:500+i*50);            
@@ -74,9 +73,9 @@ export default {
 </script>
 
 <style>
-.just {
+/* .just {
   background: linear-gradient(90deg, #ff8a00, #e52e71,#ff8a00 );
-}
+} */
 .grid {
   display: flex;
   flex-wrap: wrap;
@@ -94,7 +93,7 @@ export default {
   height: 25vw;
   margin-left:1vw;
   transition: .5s;
-  box-shadow: 3px 3px ;
+  
 }
 
 .bx {
@@ -108,7 +107,7 @@ export default {
   
 }
 .frontcard {
-  background-color: aqua;
+  background-color: #fff9f5;
   position: absolute;
   width: 18vw;
   height: 25vw;
@@ -118,14 +117,19 @@ export default {
   z-index: 2;
   -webkit-backface-visibility: hidden;  /* Chrome, Safari, Opera */
   backface-visibility: hidden;
+  border-radius: 10px;
+  box-shadow: 3px 3px ;
 }
 .backcard {
-  background-color: white;
+  background-color: #ffffff;
+
   position: absolute;
   width: 18vw;
   height: 25vw;
   transition: .5s;
   z-index: 1;
+  border-radius: 10px;
+  box-shadow: 0px 3px 3px 0px ;
 }
 .margin{
     margin-top:8vh;
