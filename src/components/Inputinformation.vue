@@ -163,7 +163,7 @@ a {
 }
 a:not(.button):not(.commentPreviewButton):not(.comment-reply-link):focus,
 a:not(.button):not(.commentPreviewButton):not(.comment-reply-link):hover {
-  background: -webkit-gradient(
+  /* background: -webkit-gradient(
     linear,
     left top,
     right top,
@@ -175,7 +175,7 @@ a:not(.button):not(.commentPreviewButton):not(.comment-reply-link):hover {
   -webkit-text-fill-color: transparent;
   -webkit-box-decoration-break: clone;
   box-decoration-break: clone;
-  text-shadow: none;
+  text-shadow: none; */
 }
 h2 {
   font-weight: 900;
