@@ -4,13 +4,15 @@
       <div id=toggleButton @click="toggleClick" v-if="!toggleButton"></div>
     </transition>
     <div v-if="toggleButton" class="grid">
-      <transition-group name="list">
-        <div @click="cardClick(index)" v-for="(item, index) in messages" :key="index" class="block" :class="[classnamearray[index%5], flipAnimationlist[index]]">{{item.intro}}
-            <div class="bx"></div>
-            <div :class="animationList[index]" id=heart @click="heartClick(index); isHeartclicked=true">
-              <div id=heartbefore :style="{backgroundColor:heartcolor[index]}"></div>
-              <div id=heartafter :style="{backgroundColor:heartcolor[index]}"></div>
-            </div>
+      <transition-group name="list"> 
+        <div @click="cardClick(index)" v-for="(item, index) in messages" :key="index" class="block" :class="[classnamearray[index%5]]">
+          <div class="bx"></div>
+          <div class=frontcard :class="[flipAnimationlist[index]]"></div>
+          <div class=backcard :class="[flipAnimationlist[index]]"></div>
+          <div :class="[animationList[index], flipAnimationlist[index]]" id=heart @click="heartClick(index); isHeartclicked=true">
+            <div id=heartbefore :style="{backgroundColor:heartcolor[index]}"></div>
+            <div id=heartafter :style="{backgroundColor:heartcolor[index]}"></div>
+          </div>
         </div>
       </transition-group>
     </div>
@@ -26,7 +28,8 @@ export default {
             classnamearray:["nomargin","margin","nomargin","margin","nomargin"],
             heartcolor:Array(300).fill('#aaaaaa'),
             animationList:Array(300).fill('none'),
-            flipAnimationlist:Array(300).fill('none'),
+            flipAnimationlist:Array(300).fill('noflipcard'),
+            randomcolorList:['#e94057','#f27121','#b9316f','#eb4d49','#ef5f35','#d63a62'],
             toggleButton:false,
             isHeartclicked:false,
         }
@@ -46,10 +49,10 @@ export default {
       },
       toggleClick(){
         this.toggleButton=!this.toggleButton;
-        for(let i=0;i<300;i++){
+        for(let i=0;i<10;i++){
             setTimeout(() => {
               this.messages.push({intro:i+"입니다."})
-            }, 500+i*50);            
+            }, 500+i*50>1000?1000:500+i*50);            
         }
       },
       cardClick(idx){
@@ -58,11 +61,11 @@ export default {
           return
         }
         else{
-          if(this.flipAnimationlist[idx]==='none'){
+          if(this.flipAnimationlist[idx]==='noflipcard'){
             this.flipAnimationlist[idx]='flipcard'
           }
           else{
-            this.flipAnimationlist[idx]='none'
+            this.flipAnimationlist[idx]='noflipcard'
           }
         }
       },
@@ -79,18 +82,13 @@ export default {
   flex-wrap: wrap;
   margin-top:10vh;
   overflow: hidden;
-  margin-left:1vw;
-  margin-right:1vw;
 }
 .block {
-  opacity: 1;
-  border-radius: 10px;
-  background-color: #eeeeee;
+  background-color: rgba(0,0,0,0);
   display: block;
-  padding: 20px;
   word-wrap: break-word;
   margin-bottom: -6vh ;
-  width: 14.5vw;
+  width: 18vw;
   -webkit-column-break-inside: avoid;
   -moz-column-break-inside: avoid;
   height: 25vw;
@@ -109,6 +107,26 @@ export default {
   margin-top: 10px;
   
 }
+.frontcard {
+  background-color: aqua;
+  position: absolute;
+  width: 18vw;
+  height: 25vw;
+  -webkit-column-break-inside: avoid;
+  -moz-column-break-inside: avoid;
+  transition: .5s;
+  z-index: 2;
+  -webkit-backface-visibility: hidden;  /* Chrome, Safari, Opera */
+  backface-visibility: hidden;
+}
+.backcard {
+  background-color: white;
+  position: absolute;
+  width: 18vw;
+  height: 25vw;
+  transition: .5s;
+  z-index: 1;
+}
 .margin{
     margin-top:8vh;
 }
@@ -116,24 +134,28 @@ export default {
   transition: .5s;
   transform: rotateY(180deg);
 }
+.noflipcard{
+  transition: .5s;
+  transform: rotateY(0deg);
+}
 #toggleButton{
   background-color: #eeeeee;
   display: block;
-  padding: 20px;
   word-wrap: break-word;
-  width: 14.5vw;
+  width: 18vw;
+  height: 25vw;
   -webkit-column-break-inside: avoid;
   -moz-column-break-inside: avoid;
-  height: 25vw;
   margin-left: 40vw;
   margin-Top: 15vh;
 }
 #heart {
-  position: relative;
+  position: absolute;
   width: 2vw;
   height: 2vw;
-  margin-top: -4vh;
-  margin-left: 13vw;
+  z-index: 3;
+  margin-left: 14.5vw;
+  margin-top: 1vw;
 }
 
 #heartbefore, #heartafter {
@@ -160,14 +182,14 @@ export default {
 }
 
 @-webkit-keyframes bounce {
-    0%, 20%, 50%, 80%, 100% {-webkit-transform: translateY(0);}
-    40% {-webkit-transform: translateY(-1.2vh) }
-    60% {-webkit-transform: translateY(-0.8vh);}
+    0%, 20%, 50%, 80%, 100% {-webkit-transform:scale(1);}
+    40% {-webkit-transform: scale(1.2) }
+    60% {-webkit-transform: scale(0.8);}
 } 
 @keyframes bounce {
-    0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
-    40% {transform: translateY(-1.2vh);}
-    60% {transform: translateY(-0.8vh);}
+    0%, 20%, 50%, 80%, 100% {-webkit-transform:scale(1);}
+    40% {-webkit-transform: scale(1.2) }
+    60% {-webkit-transform: scale(0.7);}
 } 
 .bounce {
     -webkit-animation-duration: 1s;
