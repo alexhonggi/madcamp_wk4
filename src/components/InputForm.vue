@@ -3,6 +3,7 @@
         Introduce Yourself
     </h1>
     <form class="input_form" @submit.prevent="submitUser">
+        <q-input filled v-model="name" label="Your name *" hint="Name and surname" dark lazy-rules :rules="[ val => val && val.length > 0 || 'Please type something']"></q-input>
         <label for="portrait">Upload your profile image</label>
         <input type="file" id="portrait" accept="image/*" v-on:change="onFileChange">
         <input type="text" placeholder="Name" v-model.lazy.trim="name">
