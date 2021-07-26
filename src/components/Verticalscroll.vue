@@ -5,7 +5,7 @@
     </transition>
     <div v-if="toggleButton" class="grid">
       <transition-group name="list">
-        <div @click="cardClick(index)" v-for="(item, index) in messages" :key="index" class="block" :class="[classnamearray[index%5], flipAnimationlist[index]]">{{item.intro}}
+        <div @click="cardClick(index)" v-for="(item, index) in messages" :key="index" class="block" :class="[classnamearray[index%5], flipAnimationlist[index]]" :style="{backgroundColor:randomcolorList[Math.floor(Math.random()*6)]}">{{item.intro}}
             <div :class="animationList[index]" id=heart @click="heartClick(index); isHeartclicked=true">
               <div id=heartbefore :style="{backgroundColor:heartcolor[index]}"></div>
               <div id=heartafter :style="{backgroundColor:heartcolor[index]}"></div>
@@ -26,6 +26,7 @@ export default {
             heartcolor:Array(300).fill('#aaaaaa'),
             animationList:Array(300).fill('none'),
             flipAnimationlist:Array(300).fill('none'),
+            randomcolorList:['#e94057','#f27121','#b9316f','#eb4d49','#ef5f35','#d63a62'],
             toggleButton:false,
             isHeartclicked:false,
         }
@@ -48,7 +49,7 @@ export default {
         for(let i=0;i<300;i++){
             setTimeout(() => {
               this.messages.push({intro:i+"입니다."})
-            }, 500+i*50);            
+            }, 500+i*50>1000?1000:500+i*50);            
         }
       },
       cardClick(idx){
@@ -126,7 +127,7 @@ export default {
   height: 1.5vw;
   border-radius: 2vw 2vw 0 0;
   background: #ff0000;
-  transition: .3s;
+  transition: .1s;
 }
 
 #heartbefore {
