@@ -1,7 +1,7 @@
 <template>
 <body>
   <div class="home">
-    <Maincard/>
+    <Verticalscroll/>
   </div>
 </body>
 </template>
@@ -10,6 +10,7 @@
 // @ is an alias to /src
 import Slider from '@/components/Slider.vue'
 import Maincard from '@/components/Maincard.vue'
+import Verticalscroll from '@/components/Verticalscroll.vue'
 export default {
   name: 'Home',
   data(){
@@ -22,7 +23,8 @@ export default {
 
   },
   components: {
-    Maincard
+    Maincard,
+    Verticalscroll
   }
 }
 </script>
