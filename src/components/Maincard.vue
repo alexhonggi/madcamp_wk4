@@ -1,22 +1,22 @@
 <template>
   <div id="demo">
     <transition name="fade">
-      <p @click="show = !show ; pass = true ; pass2 = false" class = "front1" v-bind:key="show" v-if="!show">A_front</p>
+      <p @click="show = !show ; pass = true ; pass2 = false ; index++" class = "front1" v-bind:key="show" v-if="!show">{{elements[index].intro}}</p>
     </transition>
     <transition name="fade3">
-      <p class = "back1" v-bind:key="show" v-if="!show">A_back</p>
+      <p class = "back1" v-bind:key="show" v-if="!show">{{elements[index].name}}</p>
     </transition>
     <transition name="fade">
-      <p @click="show = !show ; pass2 = !pass2 ; pass = false" class = "front1" v-bind:key="show" v-if="show">B_front</p>
+      <p @click="show = !show ; pass2 = !pass2 ; pass = false ; index++" class = "front1" v-bind:key="show" v-if="show">{{elements[index].intro}}</p>
     </transition>
     <transition name="fade3">
-      <p class = "back1" v-bind:key="show" v-if="show">B_back</p>
+      <p class = "back1" v-bind:key="show" v-if="show">{{elements[index].name}}</p>
     </transition>
     <transition name="fade2">
-      <p @click="pass = false" class = "box2" v-bind:key="show" v-if="pass">A_back</p>
+      <p @click="pass = false" class = "box2" v-bind:key="show" v-if="pass">{{elements[index-1].name}}</p>
     </transition>
     <transition name="fade2">
-      <p @click="pass2 = false" class = "box2" v-bind:key="show" v-if="pass2">B_back</p>
+      <p @click="pass2 = false" class = "box2" v-bind:key="show" v-if="pass2">{{elements[index-1].name}}</p>
     </transition>
   </div>
 </template>
@@ -29,8 +29,15 @@
       show:false,
       pass:false,
       pass2:false,
+      elements:[],
+      index:0,
     }
   },
+  beforeMount(){
+    for(let i=0;i<30;i++){
+      this.elements.push({name:i+'입니다', intro:'안녕하세요'+i+'입니다'})
+    }
+  }
 }
 </script>
 

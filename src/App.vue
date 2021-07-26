@@ -34,7 +34,12 @@ body{
   height:100%;
   width:100%;
   background: black;
-  overflow: hidden;
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+body::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera*/
 }
 
 </style>
