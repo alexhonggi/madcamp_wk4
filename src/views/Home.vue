@@ -31,6 +31,6 @@ export default {
 
 <style scoped>
 body {
-  background: #161A31;
+  background: #ffffff;
 }
 </style>

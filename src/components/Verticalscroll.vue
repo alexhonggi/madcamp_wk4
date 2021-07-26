@@ -118,7 +118,8 @@ export default {
   -webkit-backface-visibility: hidden;  /* Chrome, Safari, Opera */
   backface-visibility: hidden;
   border-radius: 10px;
-  box-shadow: 3px 3px ;
+  /* box-shadow: 3px 3px ; */
+   box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.19), 0px 6px 6px rgba(0, 0, 0, 0.23);
 }
 .backcard {
   background-color: #ffffff;
@@ -129,7 +130,8 @@ export default {
   transition: .5s;
   z-index: 1;
   border-radius: 10px;
-  box-shadow: 0px 3px 3px 0px ;
+  /* box-shadow: 0px 3px 3px 0px ; */
+   box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.19), 0px 6px 6px rgba(0, 0, 0, 0.23);
 }
 .margin{
     margin-top:8vh;
