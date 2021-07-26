@@ -18,16 +18,9 @@
         <textarea id="dream" cols="60" rows="1" placeholder="What do you wish to accomplish?" v-model.lazy.trim="dream"></textarea>
         <button type="submit">Submit</button>
     </form>
-    <!-- Test용 Getter -->
-    <hr>
-    <form class="get_form" @submit.prevent="getUserData">
-        <button type="submit">get</button>
-        <span ref="getName">getName</span>
-        <img src="" ref="getProfile">
-    </form>
 </template>
 <script>
-import {createUser, uploadFile, getUser} from '../firebase.js';
+import {createUser, uploadFile} from '../firebase.js';
 
 export default {
     data(){
@@ -42,13 +35,6 @@ export default {
         }
     },
     methods: {
-        async getUserData(){
-            const googleId = this.$gAuth.instance.currentUser.get().getBasicProfile().getEmail();
-            let user = await getUser(googleId);
-            console.log(user);
-            this.$refs.getName.innerText = user.name;
-            this.$refs.getProfile.src = user.profileImage;
-        },
         async submitUser(){
             const googleId = this.$gAuth.instance.currentUser.get().getBasicProfile().getEmail();
             let imageLink = await uploadFile(googleId, this.image);

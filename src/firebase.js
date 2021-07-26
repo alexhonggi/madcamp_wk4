@@ -18,20 +18,31 @@ const usersCollection = db.collection('users');
 
 const storageRef = firebase.storage().ref('userProfile');
 
+//유저 정보 디비에 기입
 export const createUser = (googleId, user) => {
     return usersCollection.doc(googleId).set(user);
 }
 
+//storage에 사진 올리고 사진 다운로드 링크 반환
 export const uploadFile  = async (googleId, file) => {
     await storageRef.child(googleId).put(file);
     return storageRef.child(googleId).getDownloadURL();
 }
 
+//user object 하나 return
 export const getUser = async googleId => {
     const user = await usersCollection.doc(googleId).get();
     return user.exists ? user.data() : null;
 }
 
+//좋아요시 like 배열에 추가
+export const onLike = (myId, targetId) => {
+    usersCollection.doc(myId).update({
+        like: firebase.firestore.FieldValue.arrayUnion(targetId)
+    });
+}
+
+//좋아요한 user id 전달 시 user object들 반환
 export const getLikes = async likes => {
     var likeUserData = [];
     for(var like in likes){
@@ -42,6 +53,7 @@ export const getLikes = async likes => {
     return likeUserData;
 }
 
+//user db 전체 데이터 반환
 export const getAllData = async () => {
     const snapshot = await usersCollection.get();
     // console.log(snapshot);
