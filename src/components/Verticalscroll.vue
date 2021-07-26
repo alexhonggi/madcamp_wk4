@@ -78,8 +78,6 @@ export default {
   flex-wrap: wrap;
   margin-top:10vh;
   overflow: hidden;
-  margin-left:1vw;
-  margin-right:1vw;
 }
 .block {
   background-color: rgba(0,0,0,0);
@@ -98,9 +96,9 @@ export default {
   position: absolute;
   width: 18vw;
   height: 25vw;
+  -webkit-column-break-inside: avoid;
+  -moz-column-break-inside: avoid;
   transition: .5s;
-  margin-left: -1.55vw;
-  margin-top: -1.55vw;
   z-index: 2;
   -webkit-backface-visibility: hidden;  /* Chrome, Safari, Opera */
   backface-visibility: hidden;
@@ -111,8 +109,6 @@ export default {
   width: 18vw;
   height: 25vw;
   transition: .5s;
-  margin-left: -1.55vw;
-  margin-top: -1.55vw;
   z-index: 1;
 }
 .margin{
@@ -129,12 +125,11 @@ export default {
 #toggleButton{
   background-color: #eeeeee;
   display: block;
-  padding: 20px;
   word-wrap: break-word;
-  width: 14.5vw;
+  width: 18vw;
+  height: 25vw;
   -webkit-column-break-inside: avoid;
   -moz-column-break-inside: avoid;
-  height: 25vw;
   margin-left: 40vw;
   margin-Top: 15vh;
 }
@@ -143,8 +138,8 @@ export default {
   width: 2vw;
   height: 2vw;
   z-index: 3;
-  margin-left: 13vw;
-  margin-top: -.3vw;
+  margin-left: 14.5vw;
+  margin-top: 1vw;
 }
 
 #heartbefore, #heartafter {
