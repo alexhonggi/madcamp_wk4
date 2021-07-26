@@ -39,7 +39,6 @@ export default {
             description: '',
             dream: '',
             image: '',
-            getName: '',
         }
     },
     methods: {

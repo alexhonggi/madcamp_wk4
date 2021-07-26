@@ -22,8 +22,8 @@ export const createUser = (googleId, user) => {
     return usersCollection.doc(googleId).set(user);
 }
 
-export const uploadFile  = (googleId, file) => {
-    storageRef.child(googleId).put(file);
+export const uploadFile  = async (googleId, file) => {
+    await storageRef.child(googleId).put(file);
     return storageRef.child(googleId).getDownloadURL();
 }
 

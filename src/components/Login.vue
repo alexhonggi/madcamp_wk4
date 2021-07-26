@@ -28,13 +28,13 @@ export default {
                 }
                 console.log("googleUser", googleUser);
                 this.user = googleUser.getBasicProfile().getEmail();
-                console.log("getId", this.user);
+                // console.log("getId", this.user);
                 console.log("getBasicProfile", googleUser.getBasicProfile());
-                console.log("getAuthResponse", googleUser.getAuthResponse());
-                console.log(
-                    "getAuthResponse",
-                    this.$gAuth.instance.currentUser.get().getAuthResponse()
-                );
+                // console.log("getAuthResponse", googleUser.getAuthResponse());
+                // console.log(
+                //     "getAuthResponse",
+                //     this.$gAuth.instance.currentUser.get().getAuthResponse()
+                // );
                 this.$router.push('/');
             } catch (error) {
                 //on fail do something
