@@ -1,7 +1,6 @@
 <template>
   <div class="about">
     <input-form></input-form>
-    <login></login>
   </div>
 </template>
 

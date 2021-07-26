@@ -18,9 +18,16 @@
         <textarea id="dream" cols="60" rows="1" placeholder="What do you wish to accomplish?" v-model.lazy.trim="dream"></textarea>
         <button type="submit">Submit</button>
     </form>
+    <!-- Test용 Getter -->
+    <hr>
+    <form class="get_form" @submit.prevent="getUserData">
+        <button type="submit">get</button>
+        <span ref="getName">getName</span>
+        <img src="" ref="getProfile">
+    </form>
 </template>
 <script>
-import {createUser, uploadFile} from '../firebase.js';
+import {createUser, uploadFile, getUser} from '../firebase.js';
 
 export default {
     data(){
@@ -31,12 +38,23 @@ export default {
             email: '',
             description: '',
             dream: '',
-            image: ''
+            image: '',
+            getName: '',
         }
     },
     methods: {
-        submitUser(){
+        async getUserData(){
+            const googleId = this.$gAuth.instance.currentUser.get().getBasicProfile().getEmail();
+            let user = await getUser(googleId);
+            console.log(user);
+            this.$refs.getName.innerText = user.name;
+            this.$refs.getProfile.src = user.profileImage;
+        },
+        async submitUser(){
+            const googleId = this.$gAuth.instance.currentUser.get().getBasicProfile().getEmail();
+            let imageLink = await uploadFile(googleId, this.image);
             const user = {
+                profileImage: imageLink,
                 name: this.name,
                 profession: this.profession,
                 phonenumber: this.phonenumber,
@@ -45,9 +63,7 @@ export default {
                 dream: this.dream,
                 like: []
             };
-            const googleId = this.$gAuth.instance.currentUser.get().getBasicProfile().getEmail();
             createUser(googleId, user);
-            uploadFile(googleId, this.image);
             this.image = '';
             this.name = '';
             this.profession = '';
@@ -116,11 +132,12 @@ export default {
 }
 </script>
 <style scoped>
-.input_form{
+.input_form, .get_form{
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    margin: 10px;
 }
 textarea{
     resize: none;

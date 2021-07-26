@@ -35,6 +35,7 @@ export default {
                     "getAuthResponse",
                     this.$gAuth.instance.currentUser.get().getAuthResponse()
                 );
+                this.$router.push('/');
             } catch (error) {
                 //on fail do something
                 console.error(error);

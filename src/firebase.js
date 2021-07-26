@@ -24,10 +24,11 @@ export const createUser = (googleId, user) => {
 
 export const uploadFile  = (googleId, file) => {
     storageRef.child(googleId).put(file);
+    return storageRef.child(googleId).getDownloadURL();
 }
 
-export const getUser = async id => {
-    const user = await usersCollection.doc(id).get();
+export const getUser = async googleId => {
+    const user = await usersCollection.doc(googleId).get();
     return user.exists ? user.data() : null;
 }
 
