@@ -9,10 +9,13 @@
       </header>
       
       <div class="name-card-grid">
+        
         <article
           class="name-card module module-article article"
           id="name-post-302186"
         >
+        <div class="container">
+        <div class="front">
           <header class="name-article-card-header">
             <div class="name-article-card-title">
               <div class="name-article-subhead">
@@ -83,8 +86,83 @@
             </div> -->
           </div>
           </header>
+          </div>
+          <div class="back">
+            <header class="name-article-card-header">
+            <div class="name-article-card-title">
+              <div class="name-article-subhead">
+                Collected at 
+                <time datetime="2020-01-28"> Jan 28, 2020 </time>
+              </div>
+              <h2 class="">
+                <a
+                  href="https://css-tricks.com/use-and-reuse-everything-in-svg-even-animations/"
+                  class="article-card-header read-article"
+                >
+                  김철환 뒷면
+                </a>
+              </h2>
+            </div>
+            <div class="name-article-meta">
+            <div class="name-article-byline">
+              <div class="author-avatar">
+                <a
+                  class="author-name"
+                  href="https://css-tricks.com/author/marianabeldi/"
+                >
+                  <img
+                    alt=""
+                    src="https://secure.gravatar.com/avatar/d478c83f5a06bd37f7087e19478b74bf?s=80&amp;d=retro&amp;r=pg"
+                    class="
+                      avatar avatar-80
+                      photo
+                      jetpack-lazy-image jetpack-lazy-image--handled
+                    "
+                    height="80"
+                    width="80"
+                    srcset="
+                      https://secure.gravatar.com/avatar/d478c83f5a06bd37f7087e19478b74bf?s=160&amp;d=retro&amp;r=pg 2x
+                    "
+                    data-lazy-loaded="1"
+                  /><noscript
+                    ><img
+                      alt=""
+                      src="https://secure.gravatar.com/avatar/d478c83f5a06bd37f7087e19478b74bf?s=80&#038;d=retro&#038;r=pg"
+                      srcset="
+                        https://secure.gravatar.com/avatar/d478c83f5a06bd37f7087e19478b74bf?s=160&#038;d=retro&#038;r=pg 2x
+                      "
+                      class="avatar avatar-80 photo"
+                      height="80"
+                      width="80"
+                  /></noscript>
+                </a>
+                <svg class="half-circle" width="80px" height="80px">
+                  <use xlink:href="#half-circle"></use>
+                </svg>
+              </div>
+            </div>
+            <div class="author-name-area">
+                <div class="author-name-prefix">Job</div>
+                <a
+                  class="author-name"
+                  href="https://css-tricks.com/author/marianabeldi/"
+                >
+                  Designer
+                </a>
+              </div>
+            <!-- <div class="tags">
+              <a href="https://css-tricks.com/tag/svg/" rel="tag">SVG</a>
+              <a href="https://css-tricks.com/tag/svg-animation/" rel="tag"
+                >SVG animation</a
+              >
+            </div> -->
+          </div>
+          </header>
+          </div>
+          </div>
         </article>
-        <!-- <article
+
+        <article
           class="name-card module module-article article"
           id="name-post-302263"
         >
@@ -153,7 +231,7 @@
               </div>
           </div>
         </article>
-        <article
+        <!-- <article
           class="name-card module module-article article"
           id="name-post-300744"
         >
@@ -976,4 +1054,18 @@ time {
   }
 } */
 
+/* .container .front,
+.container .back {
+
+} */
+
+.container .back {
+    -webkit-transform: rotateY(-180deg);
+    transform: rotateY(-180deg);
+}
+
+.container .flipped {
+    -webkit-transform: rotateY(180deg);
+    transform: rotateY(180deg);
+}
 </style>
