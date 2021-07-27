@@ -10,7 +10,7 @@
       <router-link to="/designer">Designer</router-link> |
       <router-link to="/classification">Classification</router-link>
     </div>
-    <router-view class="routerview" />
+    <router-view/>
   </body>
 </template>
 
@@ -25,6 +25,9 @@
 
 #nav {
   padding: 2.5vh;
+  position: absolute;
+  width:100%;
+  background-color: black;
 }
 
 #nav a {

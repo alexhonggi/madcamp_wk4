@@ -36,7 +36,7 @@ export default {
       for(let i=0;i<20;i++){
         setTimeout(() => {
           this.messages.push(i+"입니다.")
-        }, 500+i*50>1000?1000:500+i*50);
+        }, i*50>300?300:i*50);
       } 
     },
     methods:{
@@ -97,7 +97,7 @@ export default {
 .grid {
   display: flex;
   flex-wrap: wrap;
-  margin-top:10vh;
+  margin-top:12.5vh;
   overflow: hidden;
   margin-left: 10vw;
   margin-bottom: 10vh;
