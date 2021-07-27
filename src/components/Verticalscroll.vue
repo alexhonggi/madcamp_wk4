@@ -28,7 +28,7 @@ export default {
         return{
             messages:[],
             classnamearray:["nomargin","margin","nomargin","margin","nomargin"],
-            heartcolor:Array(300).fill('#767676'),
+            heartcolor:Array(300).fill('#989898'),
             animationList:Array(300).fill('none'),
             cardShowList:Array(300).fill(true),
             flipAnimationlist:Array(300).fill('noflipcard'),
@@ -42,7 +42,7 @@ export default {
     },
     methods:{
       heartClick(idx){
-        if(this.heartcolor[idx]==='#767676'){
+        if(this.heartcolor[idx]==='#989898'){
           this.animationList[idx]="bounce"
           this.heartcolor[idx]='#f53844';          
           setTimeout(() => {
@@ -50,7 +50,7 @@ export default {
           }, 1000);
         }
         else{
-          this.heartcolor[idx]='#767676';
+          this.heartcolor[idx]='#989898';
         }
       },
       toggleClick(){
@@ -101,7 +101,7 @@ export default {
 <style>
 .just {
   /* background: linear-gradient(90deg, #ff8a00, #e52e71,#ff8a00 ); */
-  margin-bottom: 400px;
+  margin-bottom: 900px;
 } 
 .grid {
   display: flex;
@@ -170,7 +170,7 @@ export default {
   transform: rotateY(0deg);
 }
 #toggleButton{
-  background-color: #eeeeee;
+  background-color: whitesmoke;
   display: block;
   word-wrap: break-word;
   width: 18vw;
@@ -179,6 +179,9 @@ export default {
   -moz-column-break-inside: avoid;
   margin-left: 40vw;
   margin-Top: 15vh;
+  margin-bottom:500px;
+  border-radius: 10px;
+  box-shadow: -3px -3px 0px 2.0px inset #4d4d4d;
 }
 #heart {
   position: absolute;
