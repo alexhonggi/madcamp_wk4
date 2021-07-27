@@ -5,9 +5,9 @@
     </transition>
     <div v-if="toggleButton" class="grid">
       <transition-group name="list"> 
-        <div @click="cardClick(index)" v-for="(item, index) in messages" :key="index" class="block" :class="[classnamearray[index%5]]">
-          <div class=frontcard :class="[flipAnimationlist[index]]"><div class="bx"></div></div>
-          <div class=backcard :class="[flipAnimationlist[index]]"><div class="bx"></div></div>
+        <div @click="cardClick(index)" @mousedown="mouseDown(index,$event)" @mousemove="mouseMove(index,$event)" @mouseup="mouseUp(index,$event)" v-for="(item, index) in messages" :key="item" class="block" :class="[classnamearray[index%4]]">
+          <div class=frontcard :class="[flipAnimationlist[index]]">{{messages[index]}}</div>
+          <div class=backcard :class="[flipAnimationlist[index]]"></div>
           <div :class="[animationList[index], flipAnimationlist[index]]" id=heart @click="heartClick(index); isHeartclicked=true">
             <div id=heartbefore :style="{backgroundColor:heartcolor[index]}"></div>
             <div id=heartafter :style="{backgroundColor:heartcolor[index]}"></div>
@@ -21,42 +21,50 @@
 <script>
 export default {
     name: 'Verticalscroll',
+    props: {
+
+    },
     data(){
         return{
             messages:[],
             classnamearray:["nomargin","margin","nomargin","margin","nomargin"],
-            heartcolor:Array(300).fill('#aaaaaa'),
+            heartcolor:Array(300).fill('#767676'),
             animationList:Array(300).fill('none'),
+            cardShowList:Array(300).fill(true),
             flipAnimationlist:Array(300).fill('noflipcard'),
             randomcolorList:['#e94057','#f27121','#b9316f','#eb4d49','#ef5f35','#d63a62'],
             toggleButton:false,
             isHeartclicked:false,
+            isMousedrgged:false,
+            isMousepressed:false,
+            starty:0,
         }
     },
     methods:{
       heartClick(idx){
-        if(this.heartcolor[idx]==='#aaaaaa'){
+        if(this.heartcolor[idx]==='#767676'){
           this.animationList[idx]="bounce"
-          this.heartcolor[idx]='#ff1100';          
+          this.heartcolor[idx]='#f53844';          
           setTimeout(() => {
             this.animationList[idx]="none"
           }, 1000);
         }
         else{
-          this.heartcolor[idx]='#aaaaaa';
+          this.heartcolor[idx]='#767676';
         }
       },
       toggleClick(){
         this.toggleButton=!this.toggleButton;
-        for(let i=0;i<100;i++){
+        for(let i=0;i<20;i++){
             setTimeout(() => {
-              this.messages.push({intro:i+"입니다."})
+              this.messages.push(i+"입니다.")
             }, 500+i*50>1000?1000:500+i*50);            
         }
       },
       cardClick(idx){
-        if(this.isHeartclicked){
+        if(this.isHeartclicked||this.isMousedrgged){
           this.isHeartclicked=false;
+          this.isMousedrgged=false;
           return
         }
         else{
@@ -68,6 +76,24 @@ export default {
           }
         }
       },
+      mouseDown(idx,event){
+        this.isMousepressed=true;
+        this.starty=event.y;
+      },
+      mouseMove(idx,event){
+        if(this.isMousepressed){
+          this.isMousedrgged=true;
+        }
+      },
+      mouseUp(idx,event){
+        if(this.isMousedrgged){
+          console.log(event.y-this.starty);
+          if((event.y-this.starty)<-100){
+            this.messages.splice(idx,1);
+          }
+        }
+        this.isMousepressed=false;
+      }
     }
 };
 </script>
@@ -81,6 +107,7 @@ export default {
   flex-wrap: wrap;
   margin-top:10vh;
   overflow: hidden;
+  margin-left: 10vw;
 }
 .block {
   background-color: rgba(0,0,0,0);
@@ -93,7 +120,6 @@ export default {
   height: 25vw;
   margin-left:1vw;
   transition: .5s;
-  
 }
 
 .bx {
@@ -104,12 +130,12 @@ export default {
   background: linear-gradient(90deg, #e52e71,#ff8a00 );
   z-index:5;
   margin-top: 10px;
-  
 }
 .frontcard {
-  background-color: #fff9f5;
+  background-color: white;
   position: absolute;
   width: 18vw;
+  color:black;
   height: 25vw;
   -webkit-column-break-inside: avoid;
   -moz-column-break-inside: avoid;
@@ -118,20 +144,17 @@ export default {
   -webkit-backface-visibility: hidden;  /* Chrome, Safari, Opera */
   backface-visibility: hidden;
   border-radius: 10px;
-  /* box-shadow: 3px 3px ; */
-   box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.19), 0px 6px 6px rgba(0, 0, 0, 0.23);
+  box-shadow: -3px -3px 0px 1.5px inset;
 }
 .backcard {
   background-color: #ffffff;
-
   position: absolute;
   width: 18vw;
   height: 25vw;
   transition: .5s;
   z-index: 1;
   border-radius: 10px;
-  /* box-shadow: 0px 3px 3px 0px ; */
-   box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.19), 0px 6px 6px rgba(0, 0, 0, 0.23);
+  box-shadow: 3px -3px 0px 1.5px inset;
 }
 .margin{
     margin-top:8vh;
@@ -204,14 +227,20 @@ export default {
     animation-name: bounce;
 }
 
-.list-enter-active,
-.list-leave-active {
+.list-enter-active{
   transition: all .5s ease;
 }
+.list-leave-active {
+  transition: all .5s ease;
+  position: absolute;
+}
 
-.list-enter-from,
-.list-leave-to {
+.list-enter-from{
   opacity: 0;
   transform: translateY(30px);
+}
+.list-leave-to{
+  opacity: 0;
+  transform: translateY(-30px);
 }
 </style>
