@@ -4,7 +4,7 @@
         <h2 class="header-card-title">Your <br />Namecard <br /> Collection</h2>
         <p class="header-card-sponsor">
           Made by<br />
-          <a href="https://alexhonggi.github.io/">Starchaser</a>
+          <a href="https://alexhonggi.github.io/">{{userId}}</a>
         </p>
       </header>
       
@@ -94,6 +94,9 @@
 import {getUser, getLikes} from '../firebase.js';
 
 export default {
+  props:{
+    userId: String
+  },
   name: 'Inputinformation',
   data(){
     return {
@@ -101,23 +104,29 @@ export default {
       dataReady: false,
     }
   },
-  mounted(){
-    let googleId;
-    setTimeout(async ()=>{
-      googleId = this.$gAuth.instance.currentUser.get().getBasicProfile().getEmail();
-      console.log(googleId);
-      const user = await getUser(googleId);
-      const likes = user.like;
-      const dataList = await getLikes(likes);
-      this.userData = dataList;
-      console.log(dataList);
-      console.log(this.userData);
-      this.dataReady = true;
-    }, 1500);
+  async mounted(){
+    // let googleId;
+    // setTimeout(async ()=>{
+    //   googleId = this.$gAuth.instance.currentUser.get().getBasicProfile().getEmail();
+    //   console.log(googleId);
+    //   const user = await getUser(googleId);
+    //   const likes = user.like;
+    //   const dataList = await getLikes(likes);
+    //   this.userData = dataList;
+    //   console.log(dataList);
+    //   console.log(this.userData);
+    //   this.dataReady = true;
+    // }, 1500);
+    let googleId = this.userId;
+    console.log(googleId);
+    const user = await getUser(googleId);
+    const likes = user.like;
+    const dataList = await getLikes(likes);
+    this.userData = dataList;
+    console.log(dataList);
+    console.log(this.userData);
+    this.dataReady = true;
   },
-  props: {
-
-  }  
 }
 </script>
 

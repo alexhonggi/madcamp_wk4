@@ -24,6 +24,9 @@
 <script>
  export default {
   name: 'Home',
+  props:{
+    userId: String
+  },
   data(){
     return{
       show:false,

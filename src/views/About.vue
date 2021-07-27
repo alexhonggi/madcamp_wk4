@@ -1,6 +1,6 @@
 <template>
   <div class="about">
-    <input-information></input-information>
+    <input-information v-if="userId" :userId="userId"></input-information>
   </div>
 </template>
 
@@ -8,6 +8,14 @@
 import InputInformation from '../components/Inputinformation.vue';
 
 export default {
+  data(){
+    return {
+      userId: ''
+    }
+  },
+  mounted(){
+    this.userId = this.$route.params.userId;
+  },
   components:{
     InputInformation,
   }

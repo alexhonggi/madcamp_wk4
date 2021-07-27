@@ -1,4 +1,4 @@
-<template>
+<template >
     <login></login>
 </template>
 <script>
@@ -8,7 +8,7 @@ export default {
     name: 'LoginPage',
     components:{
         Login,
-    }    
+    }
 }
 </script>
 <style>

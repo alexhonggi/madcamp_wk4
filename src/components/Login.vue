@@ -1,12 +1,15 @@
 <template>
-    <div>
-        <h1>IsInit: {{ Vue3GoogleOauth.isInit }}</h1>
+    <div class="login_wrapper">
+        <!-- <h1>IsInit: {{ Vue3GoogleOauth.isInit }}</h1>
         <h1>IsAuthorized: {{ Vue3GoogleOauth.isAuthorized }}</h1>
-        <h2 v-if="user">signed user: {{user}}</h2>
-        <button @click="handleClickSignIn" :disabled="!Vue3GoogleOauth.isInit || Vue3GoogleOauth.isAuthorized">sign in</button>
-        <button @click="handleClickGetAuthCode" :disabled="!Vue3GoogleOauth.isInit">get authCode</button>
-        <button @click="handleClickSignOut" :disabled="!Vue3GoogleOauth.isAuthorized">sign out</button>
-        <button @click="handleClickDisconnect" :disabled="!Vue3GoogleOauth.isAuthorized">disconnect</button>
+        <h2 v-if="user">signed user: {{user}}</h2> -->
+        <!-- <button @click="handleClickSignIn" :disabled="!Vue3GoogleOauth.isInit || Vue3GoogleOauth.isAuthorized">sign in</button> -->
+        <!-- <button @click="handleClickGetAuthCode" :disabled="!Vue3GoogleOauth.isInit">get authCode</button> -->
+        <!-- <button @click="handleClickSignOut" :disabled="!Vue3GoogleOauth.isAuthorized">sign out</button> -->
+        <!-- <button @click="handleClickDisconnect" :disabled="!Vue3GoogleOauth.isAuthorized">disconnect</button> -->
+        <h3 class="login_title">Log In</h3>
+        <q-btn color="primary" text-color="white" icon-right="login" @click="handleClickSignIn" :disabled="!Vue3GoogleOauth.isInit || Vue3GoogleOauth.isAuthorized">LogIn&nbsp</q-btn>
+        <q-btn style="background: #FF0080" text-color="white" icon-right="logout" @click="handleClickSignOut" :disabled="!Vue3GoogleOauth.isAuthorized">LogOut&nbsp</q-btn>
     </div>
 </template>
 <script>
@@ -35,7 +38,8 @@ export default {
                 //     "getAuthResponse",
                 //     this.$gAuth.instance.currentUser.get().getAuthResponse()
                 // );
-                this.$router.push('/');
+                this.$emit('loggedIn', googleUser.getBasicProfile().getEmail());
+                this.$router.push({name: 'Home', params: {userId: this.user}});
             } catch (error) {
                 //on fail do something
                 console.error(error);
@@ -77,6 +81,24 @@ export default {
     }
 }
 </script>
-<style>
-    
+<style scoped>
+.login_wrapper{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 50px 0;
+}
+.login_title{
+    color: white;
+    font-weight: 700;
+    margin-bottom: 70px;
+}
+.q-btn{
+    width: 200px;
+    height: 50px;
+    font-weight: 700;
+    font-size: 21px;
+    margin: 5px;
+}
 </style>

@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <Maincard class="scroll"/>
+    <Maincard :userId="userId" class="scroll"/>
   </div>
 </template>
 
@@ -13,11 +13,12 @@ export default {
   data(){
     return{
       items:['하나','둘','셋'],
-      number:0
+      number:0,
+      userId: ''
     }
   },
-  methods:{
-
+  mounted(){
+    this.userId = this.$route.params.userId;
   },
   components: {
     Maincard,

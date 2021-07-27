@@ -1,17 +1,32 @@
 <template>
-  <body>
+  <body >
     <div id="nav">
       <router-link to='/login'>Login</router-link> |
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link> |
+      <router-link :to='{name: "Home", params: {userId: this.id}}'>Home</router-link> |
+      <router-link :to='{name: "About", params: {userId: this.id}}'>About</router-link> |
       <router-link to="/card">Card</router-link> |
       <router-link to="/executive">Executive</router-link> |
       <router-link to="/technician">Technician</router-link> |
       <router-link to="/designer">Designer</router-link>
     </div>
-    <router-view class="routerview" />
+    <router-view class="routerview" @loggedIn="handleLoggedIn"/>
   </body>
 </template>
+
+<script>
+export default {
+  data(){
+    return {
+      id: ''
+    }
+  },
+  methods: {
+    handleLoggedIn(id){
+      this.id = id;
+    },
+  },
+}
+</script>
 
 <style>
 #app {
