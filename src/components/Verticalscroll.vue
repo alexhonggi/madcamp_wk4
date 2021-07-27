@@ -1,17 +1,10 @@
 <template>
   <div class="just">
-    <transition name=list>
-      <div id=toggleButton @click="toggleClick" v-if="!toggleButton"></div>
-    </transition>
     <div v-if="toggleButton" class="grid">
       <transition-group name="list"> 
-        <div @click="cardClick(index)" @mousedown="mouseDown(index,$event)" @mousemove="mouseMove(index,$event)" @mouseup="mouseUp(index,$event)" v-for="(item, index) in messages" :key="item" class="block" :class="[classnamearray[index%4]]">
+        <div @click="cardClick(index)" @mousedown="mouseDown(index,$event)" @mousemove="mouseMove(index,$event)" @mouseup="mouseUp(index,$event)" v-for="(item, index) in messages" :key="item" class="block" :class="[classnamearray[index%2]]">
           <div class=frontcard :class="[flipAnimationlist[index]]">{{messages[index]}}</div>
           <div class=backcard :class="[flipAnimationlist[index]]"></div>
-          <div :class="[animationList[index], flipAnimationlist[index]]" id=heart @click="heartClick(index); isHeartclicked=true">
-            <div id=heartbefore :style="{backgroundColor:heartcolor[index]}"></div>
-            <div id=heartafter :style="{backgroundColor:heartcolor[index]}"></div>
-          </div>
         </div>
       </transition-group>
     </div>
@@ -27,18 +20,24 @@ export default {
     data(){
         return{
             messages:[],
-            classnamearray:["nomargin","margin","nomargin","margin","nomargin"],
+            classnamearray:["nomargin","margin"],
             heartcolor:Array(300).fill('#767676'),
             animationList:Array(300).fill('none'),
-            cardShowList:Array(300).fill(true),
             flipAnimationlist:Array(300).fill('noflipcard'),
             randomcolorList:['#e94057','#f27121','#b9316f','#eb4d49','#ef5f35','#d63a62'],
-            toggleButton:false,
+            toggleButton:true,
             isHeartclicked:false,
             isMousedrgged:false,
             isMousepressed:false,
             starty:0,
         }
+    },
+    mounted(){
+      for(let i=0;i<20;i++){
+        setTimeout(() => {
+          this.messages.push(i+"입니다.")
+        }, i*50>300?300:i*50);
+      } 
     },
     methods:{
       heartClick(idx){
@@ -51,14 +50,6 @@ export default {
         }
         else{
           this.heartcolor[idx]='#767676';
-        }
-      },
-      toggleClick(){
-        this.toggleButton=!this.toggleButton;
-        for(let i=0;i<20;i++){
-            setTimeout(() => {
-              this.messages.push(i+"입니다.")
-            }, 500+i*50>1000?1000:500+i*50);            
         }
       },
       cardClick(idx){
@@ -90,6 +81,7 @@ export default {
           console.log(event.y-this.starty);
           if((event.y-this.starty)<-100){
             this.messages.splice(idx,1);
+            this.flipAnimationlist.splice(idx,1);
           }
         }
         this.isMousepressed=false;
@@ -106,22 +98,22 @@ export default {
 .grid {
   display: flex;
   flex-wrap: wrap;
-  margin-top:10vh;
+  margin-top:12.5vh;
   overflow: hidden;
   margin-left: 10vw;
-  margin-bottom: 100px;
+  margin-bottom: 10vh;
 }
 .block {
   background-color: rgba(0,0,0,0);
-  display: block;
   word-wrap: break-word;
-  margin-bottom: -6vh ;
+  display: inline-block;
   width: 18vw;
   -webkit-column-break-inside: avoid;
   -moz-column-break-inside: avoid;
   height: 25vw;
   margin-left:1vw;
   transition: .5s;
+  margin-top:1vw;
 }
 
 .bx {
@@ -159,7 +151,11 @@ export default {
 }
 
 .margin{
-    margin-top:8vh;
+  padding-top:7vh;
+}
+
+.nomargin{
+
 }
 .flipcard{
   transition: .5s;

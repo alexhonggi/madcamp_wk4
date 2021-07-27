@@ -5,6 +5,7 @@ import CreateCard from '../views/CreateCard.vue';
 import Designer from '../views/Designer.vue';
 import Executive from '../views/Executive.vue';
 import Technician from '../views/Technician.vue';
+import Classification from '../views/Classification.vue'
 
 const routes = [
   {
@@ -44,7 +45,12 @@ const routes = [
     path: '/technician',
     name: 'Technician',
     component: Technician
-  }
+  },
+  {
+    path: '/classification',
+    name: 'Classification',
+    component: Classification
+  },
 ]
 
 const router = createRouter({

@@ -31,11 +31,8 @@ export default {
 .home {
   background-color: #f53844;
   width: 100%;
-  min-height: 100vh;
+  min-height: 92.5vh;
   max-height: max-content;
-  margin-top:0;
-}
-.scroll{
-  top:10vh;
+  margin-top:7.5vh;
 }
 </style>

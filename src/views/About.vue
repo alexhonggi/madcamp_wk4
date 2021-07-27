@@ -21,3 +21,9 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.about{
+  padding-top:7.5vh;
+}
+</style>

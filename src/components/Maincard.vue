@@ -85,39 +85,42 @@
 }
 
 .front1{
-  color:aquamarine;
   font-size:30pt;
   width:50vh;
   height:75vh;
   left:40vh;
   position: absolute;
-  top:10vh;
-  background: olive;
+  margin-top:10vh;
+  background: white;
   z-index: 2;
+  border-radius: 3vh;
   -webkit-backface-visibility: hidden;  /* Chrome, Safari, Opera */
   backface-visibility: hidden;
+  box-shadow: -5px -5px 0px 3px black inset;
 }
 .back1{
-  color:aquamarine;
   font-size:30pt;
   width:50vh;
   height:75vh;
   left:40vh;
   position: absolute;
-  top:10vh;
   background: white;
+  border-radius: 3.5vh;
+  margin-top:10vh;
   z-index: 1;
   -webkit-backface-visibility: hidden;  /* Chrome, Safari, Opera */
   backface-visibility: hidden;
+  box-shadow: -5px -5px 0px 3px black inset;
 }
 .box2{
-  color:aquamarine;
   font-size:30pt;
   background: white;
   width:50vh;
-  top:10vh;
+  border-radius: 3vh;
   height:75vh;
   left:99vh;
   position: absolute;
+  margin-top:10vh;
+  box-shadow: -5px -5px 0px 3px black inset;
 }
 </style>
