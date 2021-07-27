@@ -1,38 +1,63 @@
 <template>
-    <h1>
-        Introduce Yourself
-    </h1>
     <form class="input_form" @submit.prevent="submitUser">
-        <q-input filled v-model="name" label="Your name *" hint="Name and surname" dark lazy-rules :rules="[ val => val && val.length > 0 || 'Please type something']"></q-input>
-        <label for="portrait">Upload your profile image</label>
-        <input type="file" id="portrait" accept="image/*" v-on:change="onFileChange">
-        <input type="text" placeholder="Name" v-model.lazy.trim="name">
-        <select name="professions"  v-model.lazy.trim="profession">
-            <option value="" selected disabled>Select your Profession</option>
-            <option value="frontend">Frontend Engineer</option>
-            <option value="backend">Backend Engineer</option>
-            <option value="marketing">Marketing Manager</option>
-        </select>
-        <input type="tel" placeholder="Phone Number" v-model="phonenumber" @keyup="getPhoneMask">
-        <input type="email" placeholder="Email" v-model.lazy.trim="email">
-        <textarea id="description" cols="60" rows="1" placeholder="Describe Yourself in one sentence" maxlength="60" v-model.lazy.trim="description"></textarea>
-        <textarea id="dream" cols="60" rows="1" placeholder="What do you wish to accomplish?" v-model.lazy.trim="dream"></textarea>
-        <button type="submit">Submit</button>
-    </form>
-    <!-- Test용 Getter -->
-    <hr>
-    <form class="get_form" @submit.prevent="getUserData">
-        <button type="submit">get</button>
-        <span ref="getName">getName</span>
-        <img src="" ref="getProfile">
+        <span class="form_title">Create Your Card</span>
+        <q-input class="custom_input" filled  v-model="name" label="Your name" dark autocomplete="off">
+            <template v-slot:prepend>
+                <q-icon name="person"></q-icon>
+            </template>
+        </q-input>
+
+        <q-input class="custom_input" filled color="green" type="tel" dark label="Phone Number" v-model="phonenumber" @keyup="getPhoneMask" autocomplete="off">
+            <template v-slot:prepend>
+                <q-icon name="call"></q-icon>
+            </template>
+        </q-input>
+
+        <q-input class="custom_input" filled color="yellow" type="email" dark label="Email Address" v-model="email" autocomplete="off">
+            <template v-slot:prepend>
+                <q-icon name="email"></q-icon>
+            </template>
+        </q-input>
+
+        <q-file class="custom_input" dark color="purple" filled v-model="image" accept="image/*" v-on:change="onFileChange" label="Profile Image" >
+            <template v-slot:prepend>
+                <q-icon name="attach_file"></q-icon>
+            </template>
+        </q-file>
+
+        <q-select dark class="custom_input" color="cyan" use-input  filled v-model="profession" :options="options" label="Profession"
+                    transition-show="flip-up" transition-hide="flip-down">
+            <template v-slot:prepend>
+                <q-icon name="assignment_ind"></q-icon>
+            </template>
+        </q-select>
+
+        <q-input class="custom_input" filled color="teal" type="text" maxlength="50" dark label="Describe Yourself in one sentence" v-model="description" autocomplete="off">
+            <template v-slot:prepend>
+                <q-icon name="description"></q-icon>
+            </template>
+        </q-input>
+
+        <q-input class="custom_input" filled color="amber" type="text" maxlength="50" dark label="What do you wish to accomplish?" v-model="dream" autocomplete="off">
+            <template v-slot:prepend>
+                <q-icon name="info"></q-icon>
+            </template>
+        </q-input>
+
+        <q-btn color="primary" type="submit" icon-right="send"><span class="btn_text">SUBMIT&nbsp</span></q-btn>
     </form>
 </template>
 <script>
-import {createUser, uploadFile, getUser} from '../firebase.js';
+import {createUser, uploadFile} from '../firebase.js';
 
 export default {
     data(){
         return {
+            options: [
+                'Software Engineer',
+                'Designer',
+                'Marketer'
+            ],
             name: '',
             profession: '',
             phonenumber: '',
@@ -43,13 +68,6 @@ export default {
         }
     },
     methods: {
-        async getUserData(){
-            const googleId = this.$gAuth.instance.currentUser.get().getBasicProfile().getEmail();
-            let user = await getUser(googleId);
-            console.log(user);
-            this.$refs.getName.innerText = user.name;
-            this.$refs.getProfile.src = user.profileImage;
-        },
         async submitUser(){
             const googleId = this.$gAuth.instance.currentUser.get().getBasicProfile().getEmail();
             let imageLink = await uploadFile(googleId, this.image);
@@ -132,14 +150,29 @@ export default {
 }
 </script>
 <style scoped>
-.input_form, .get_form{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    margin: 10px;
-}
 textarea{
     resize: none;
+}
+.input_form{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+.form_title{
+    margin: 70px 0 30px;
+    font-size: 50px;
+    color: #fff;
+    font-weight: 700;
+}
+.custom_input{
+    width: 30%;
+    margin: 7px;
+}
+.q-btn{
+    margin: 15px 0 20px;
+}
+.btn_text{
+    font-weight: 700 !important;
 }
 </style>

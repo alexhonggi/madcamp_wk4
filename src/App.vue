@@ -30,13 +30,13 @@
 }
 
 #nav a.router-link-exact-active {
-  color: #6600ff;
+  color: #003cff;
 }
 
 body{
   height:100%;
   width:100%;
-  background: black;
+  background: #2b2b2b;
   scroll-behavior: smooth;
   overflow-x: hidden;
   overflow-y: auto;
