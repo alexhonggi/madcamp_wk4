@@ -2,6 +2,9 @@ import { createRouter, createWebHistory } from 'vue-router'
 import Home from '../views/Home.vue'
 import LoginPage from '../views/LoginPage.vue';
 import CreateCard from '../views/CreateCard.vue';
+import Designer from '../views/Designer.vue';
+import Executive from '../views/Executive.vue';
+import Technician from '../views/Technician.vue';
 
 const routes = [
   {
@@ -26,6 +29,21 @@ const routes = [
     path: '/card',
     name: 'CreateCard',
     component: CreateCard
+  },
+  {
+    path: '/designer',
+    name: 'Designer',
+    component: Designer
+  },
+  {
+    path: '/executive',
+    name: 'Executive',
+    component: Executive
+  },
+  {
+    path: '/technician',
+    name: 'Technician',
+    component: Technician
   }
 ]
 

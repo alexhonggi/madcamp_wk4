@@ -4,7 +4,10 @@
       <router-link to='/login'>Login</router-link> |
       <router-link to="/">Home</router-link> |
       <router-link to="/about">About</router-link> |
-      <router-link to="/card">Card</router-link>
+      <router-link to="/card">Card</router-link> |
+      <router-link to="/executive">Executive</router-link> |
+      <router-link to="/technician">Technician</router-link> |
+      <router-link to="/designer">Designer</router-link>
     </div>
     <router-view class="routerview" />
   </body>
@@ -17,11 +20,10 @@
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  
 }
 
 #nav {
-  padding: 0;
+  padding: 2.5vh;
 }
 
 #nav a {
@@ -31,6 +33,7 @@
 
 #nav a.router-link-exact-active {
   color: #6600ff;
+  text-align: center;
 }
 
 body{
@@ -45,5 +48,4 @@ body{
 body::-webkit-scrollbar {
     display: none; /* Chrome, Safari, Opera*/
 }
-
 </style>

@@ -1,7 +1,9 @@
 <template>
+<body>
   <div class="home">
-    <Verticalscroll class="scroll"/>
+    <Verticalscroll/>
   </div>
+</body>
 </template>
 
 <script>
@@ -10,7 +12,7 @@ import Slider from '@/components/Slider.vue'
 import Maincard from '@/components/Maincard.vue'
 import Verticalscroll from '@/components/Verticalscroll.vue'
 export default {
-  name: 'Home',
+  name: 'Technician',
   data(){
     return{
       items:['하나','둘','셋'],
@@ -28,14 +30,7 @@ export default {
 </script>
 
 <style scoped>
-.home {
-  background-color: #f53844;
-  width: 100%;
-  min-height: 100vh;
-  max-height: max-content;
-  margin-top:0;
-}
-.scroll{
-  top:10vh;
+body {
+  background-color: #5e38f5;
 }
 </style>
