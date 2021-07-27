@@ -119,9 +119,10 @@
   height:75vh;
   left:40vh;
   position: absolute;
-  top:10vh;
+  top:10vh; /* margin-top: 10vh */
   background: #FB4F72;
   z-index: 2;
+  border-radius: 3vh;
   -webkit-backface-visibility: hidden;  /* Chrome, Safari, Opera */
   backface-visibility: hidden;
   border-radius: 20px;
@@ -166,7 +167,7 @@
   font-size:30pt;
   background: #0B5CE2;
   width:50vh;
-  top:10vh;
+  border-radius: 3vh;
   height:75vh;
   left:99vh;
   position: absolute;

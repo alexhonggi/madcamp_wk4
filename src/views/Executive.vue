@@ -32,5 +32,9 @@ export default {
 <style scoped>
 body {
   background-color: #f5b338;
+  width: 100%;
+  min-height: 100vh;
+  max-height: max-content;
+  margin-top:0;
 }
 </style>
