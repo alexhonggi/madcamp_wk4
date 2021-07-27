@@ -99,15 +99,17 @@ export default {
 </script>
 
 <style>
-/* .just {
-  background: linear-gradient(90deg, #ff8a00, #e52e71,#ff8a00 );
-} */
+.just {
+  /* background: linear-gradient(90deg, #ff8a00, #e52e71,#ff8a00 ); */
+  margin-bottom: 400px;
+} 
 .grid {
   display: flex;
   flex-wrap: wrap;
   margin-top:10vh;
   overflow: hidden;
   margin-left: 10vw;
+  margin-bottom: 100px;
 }
 .block {
   background-color: rgba(0,0,0,0);
@@ -132,10 +134,9 @@ export default {
   margin-top: 10px;
 }
 .frontcard {
-  background-color: white;
+  background-color: whitesmoke;
   position: absolute;
-  width: 18vw;
-  color:black;
+  width: calc(18vw - 2px);
   height: 25vw;
   -webkit-column-break-inside: avoid;
   -moz-column-break-inside: avoid;
@@ -144,18 +145,19 @@ export default {
   -webkit-backface-visibility: hidden;  /* Chrome, Safari, Opera */
   backface-visibility: hidden;
   border-radius: 10px;
-  box-shadow: -3px -3px 0px 1.5px inset;
+  box-shadow: -3px -3px 0px 2.0px inset #4d4d4d;
 }
 .backcard {
-  background-color: #ffffff;
+  background-color:whitesmoke;
   position: absolute;
-  width: 18vw;
+  width: calc(18vw - 2px);
   height: 25vw;
   transition: .5s;
   z-index: 1;
   border-radius: 10px;
-  box-shadow: 3px -3px 0px 1.5px inset;
+  box-shadow: 3px -3px 0px 2.0px inset #4d4d4d;
 }
+
 .margin{
     margin-top:8vh;
 }
