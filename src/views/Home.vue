@@ -1,12 +1,11 @@
 <template>
   <div class="home">
-    <Verticalscroll class="scroll"/>
+    <Maincard class="scroll"/>
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
-import Slider from '@/components/Slider.vue'
+// @ is an alias to /srcsnts/Slider.vue'
 import Maincard from '@/components/Maincard.vue'
 import Verticalscroll from '@/components/Verticalscroll.vue'
 export default {
