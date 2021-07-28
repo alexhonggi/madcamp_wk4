@@ -1,7 +1,7 @@
 <template>
-  <div id="demo">
+  <div id="demo" v-if="updated">
     <transition name="fade">
-      <p @click="show = !show ; pass = true ; pass2 = false ; index++" class = "nextFront" v-bind:key="show" v-if="!show">{{elements[index].intro}}<div class="quote">SPARK<br> THE<br> POWER OF<br> LEARNING<br> TOGETHER</div></p>
+      <p @click="show = !show ; pass = true ; pass2 = false ; index++" class = "nextFront" v-bind:key="show" v-if="!show">{{users[index].name}}<div class="quote">SPARK<br> THE<br> POWER OF<br> LEARNING<br> TOGETHER</div></p>
     </transition>
     <transition name="fade3">
       <p class = "nextBack" v-bind:key="show" v-if="!show">{{elements[index].name}}</p>
@@ -25,6 +25,8 @@
 </template>
 
 <script>
+import {getAllData} from '../firebase.js';
+
  export default {
   name: 'Home',
   data(){
@@ -34,12 +36,22 @@
       pass2:false,
       elements:[],
       index:0,
+      users: [],
+      updated: false,
     }
   },
-  beforeMount(){
+  async beforeMount(){
     for(let i=0;i<30;i++){
       this.elements.push({ name:i+'입니다', intro:'안녕하세요'+i+'입니다'})
     }
+    var allUser = await getAllData();
+    allUser.forEach(doc=>{
+      this.users.push(doc.data());
+    })
+    this.updated = true;
+  },
+  mounted(){
+    console.log(this.users);
   }
   
 }

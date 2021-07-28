@@ -26,7 +26,7 @@
         </q-file>
 
         <q-select dark class="custom_input" color="cyan" use-input  filled v-model="profession" :options="options" label="Profession"
-                    transition-show="flip-up" transition-hide="flip-down" required>
+                    transition-show="flip-up" transition-hide="flip-down">
             <template v-slot:prepend>
                 <q-icon name="assignment_ind"></q-icon>
             </template>
