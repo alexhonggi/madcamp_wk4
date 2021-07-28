@@ -63,6 +63,11 @@ export const getAllData = async () => {
     return snapshot;
 }
 
+export const getProfData = async (prof) => {
+    const snapshot = await usersCollection.where("profession", "==", prof).get();
+    return snapshot;
+}
+
 export const deleteUser = id => {
     return usersCollection.doc(id).delete();
 }

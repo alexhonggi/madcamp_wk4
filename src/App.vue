@@ -5,14 +5,18 @@
       <router-link :to='{name: "Home", params: {userId: this.id}}'>Home</router-link> |
       <router-link :to='{name: "About", params: {userId: this.id}}'>About</router-link> |
       <router-link to="/card">Card</router-link> |
-      <router-link to="/manager" class="manager" >Manager</router-link> |
-      <router-link to="/developer" class="developer">Developer</router-link> |
-      <router-link to="/designer" class="designer">Designer</router-link>
-      <router-link to="/classification">Classification</router-link>
+      <router-link :to='{name: "Classification", params: {userId: this.id}}'>Classification</router-link>
+      <!--
+        <router-link to="/manager" class="manager" >Manager</router-link> |
+        <router-link to="/developer" class="developer">Developer</router-link> |
+        <router-link to="/designer" class="designer">Designer</router-link>
+        <router-link to="/classification">Classification</router-link>
+      -->
     </div>
     <router-view class="routerview" @loggedIn="handleLoggedIn"/>
   </body>
 </template>
+
 
 <script>
 export default {
