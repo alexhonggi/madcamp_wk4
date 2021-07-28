@@ -54,9 +54,9 @@ export default {
     data(){
         return {
             options: [
-                'Software Engineer',
+                'Developer',
                 'Designer',
-                'Marketer'
+                'Manager'
             ],
             name: '',
             profession: '',

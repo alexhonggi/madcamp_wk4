@@ -3,8 +3,8 @@ import Home from '../views/Home.vue'
 import LoginPage from '../views/LoginPage.vue';
 import CreateCard from '../views/CreateCard.vue';
 import Designer from '../views/Designer.vue';
-import Executive from '../views/Executive.vue';
-import Technician from '../views/Technician.vue';
+import Manager from '../views/Manager.vue';
+import Developer from '../views/Developer.vue';
 import Classification from '../views/Classification.vue'
 
 const routes = [
@@ -37,14 +37,14 @@ const routes = [
     component: Designer
   },
   {
-    path: '/executive',
-    name: 'Executive',
-    component: Executive
+    path: '/manager',
+    name: 'Manager',
+    component: Manager
   },
   {
-    path: '/technician',
-    name: 'Technician',
-    component: Technician
+    path: '/developer',
+    name: 'Developer',
+    component: Developer
   },
   {
     path: '/classification',

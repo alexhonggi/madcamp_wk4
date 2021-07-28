@@ -1,9 +1,9 @@
 <template>
     <div class="wrapper" :style="{backgroundColor:backgroundcolor}">
         <transition-group>
-            <div @mouseenter="changeBackground(0)" @click="clickevent(0)" class="firstblock" :class="transition[0]"><div style="paddingTop:30vh">Designer</div></div>
-            <div @mouseenter="changeBackground(1)" @click="clickevent(1)" class="secondblock" :class="transition[1]"><div style="paddingTop:30vh">Technician</div></div>
-            <div @mouseenter="changeBackground(2)" @click="clickevent(2)" class="thirdblock" :class="transition[2]"><div style="paddingTop:30vh">Executive</div></div>
+            <div @mouseenter="changeBackground(0)" @click="clickevent(0)" class="firstblock" :class="transition[0]">Designer</div>
+            <div @mouseenter="changeBackground(1)" @click="clickevent(1)" class="secondblock" :class="transition[1]">Developer</div>
+            <div @mouseenter="changeBackground(2)" @click="clickevent(2)" class="thirdblock" :class="transition[2]">Manager</div>
         </transition-group>        
     </div>
 </template>
@@ -46,7 +46,7 @@ export default {
                 this.transition[1]='transitionUp'
                 this.transition[2]='transitionDown'
                 setTimeout(() => {
-                    this.$router.push('/technician');
+                    this.$router.push('/developer');
                 }, 1000);
                 break;
             case 2:
@@ -54,7 +54,7 @@ export default {
                 this.transition[1]='transitionDown'
                 this.transition[2]='transitionUp'
                 setTimeout(() => {
-                    this.$router.push('/executive');
+                    this.$router.push('/manager');
                 }, 1000);
                 break;
             default:

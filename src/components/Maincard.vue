@@ -123,6 +123,57 @@ import {getAllData} from '../firebase.js';
   margin-top: 5rem;
   text-shadow: 3px 3px #dd4f6b;
 }
+.developer {
+  color:black;
+  font-size:30pt;
+  width:50vh;
+  height:75vh;
+  left:40vh;
+  position: absolute;
+  top:10vh;
+  background: #FB4F72;
+  z-index: 2;
+  -webkit-backface-visibility: hidden;  /* Chrome, Safari, Opera */
+  backface-visibility: hidden;
+  border-radius: 20px;
+  margin-top: 30px;
+  box-shadow: -3px -3px 1px 3.0px inset #742131;
+  
+  font-size: 58px;
+  font-family: 'Montserrat', sans-serif;
+  text-align: left;
+  margin-left: 4rem;
+  font-weight: bolder;
+  color: #ffffff;
+  margin-top: 5rem;
+  text-shadow: 3px 3px #dd4f6b;
+}
+
+.manager {
+  color:black;
+  font-size:30pt;
+  width:50vh;
+  height:75vh;
+  left:40vh;
+  position: absolute;
+  top:10vh;
+  background: #FB4F72;
+  z-index: 2;
+  -webkit-backface-visibility: hidden;  /* Chrome, Safari, Opera */
+  backface-visibility: hidden;
+  border-radius: 20px;
+  margin-top: 30px;
+  box-shadow: -3px -3px 1px 3.0px inset #742131;
+  
+  font-size: 58px;
+  font-family: 'Montserrat', sans-serif;
+  text-align: left;
+  margin-left: 4rem;
+  font-weight: bolder;
+  color: #ffffff;
+  margin-top: 5rem;
+  text-shadow: 3px 3px #dd4f6b;
+}
 
 
 .nextFront{
@@ -187,13 +238,13 @@ import {getAllData} from '../firebase.js';
   margin-top: 30px;
   border-radius: 20px;
   box-shadow: -3px -3px 1px 3.0px inset #052050;
-    font-size: 58px;
+  font-size: 58px;
   font-family: 'Montserrat', sans-serif;
   text-align: left;
   margin-left: 4rem;
   font-weight: bolder;
   color: #ffffff;
-  margin-top: 5rem;
+  margin-top: 6.4rem;
   text-shadow: 3px 3px #0b4fb6;
 }
 
