@@ -6,17 +6,19 @@
     <transition name="fade3">
       <p class = "nextBack" v-bind:key="show" v-if="!show">{{elements[index].name}}</p>
     </transition>
+    <!-- 밑줄에 소개 -->
     <transition name="fade">
       <p @click="show = !show ; pass2 = !pass2 ; pass = false ; index++" class = "nextFront" v-bind:key="show" v-if="show" :style="{ color:[]}">{{elements[index].intro}}<div class="quote">SPARK<br> THE<br> POWER OF<br> LEARNING<br> TOGETHER</div></p>
     </transition>
     <transition name="fade3">
       <p class = "nextBack" v-bind:key="show" v-if="show">{{elements[index].name}}</p>
     </transition>
+    <!-- 밑에다 name, job, topic -->
     <transition name="fade2">
-      <p @click="pass = false" class = "beforeBack" v-bind:key="show" v-if="pass">{{elements[index-1].name}}<div class="quote">HONGGI LEE<br><br><br>FRONTEND<br>DESIGNER</div></p>
+      <p @click="pass = false" class = "beforeBack" v-bind:key="show" v-if="pass">{{elements[index-1].name}}<div class="name">HONGGI LEE</div><div class="job">FRONTEND DESIGNER</div><div class="topic">Personal<br>online<br>library</div></p>
     </transition>
     <transition name="fade2">
-      <p @click="pass2 = false" class = "beforeBack" v-bind:key="show" v-if="pass2">{{elements[index-1].name}}<div class="quote">HONGGI LEE<br><br><br>FRONTEND<br>DESIGNER</div></p>
+      <p @click="pass2 = false" class = "beforeBack" v-bind:key="show" v-if="pass2">{{elements[index-1].name}}<div class="name">HONGGI LEE</div><div class="job">FRONTEND DESIGNER</div><div class="topic">Personal<br>online<br>library</div></p>
     </transition>
     
   </div>
@@ -191,7 +193,45 @@
   margin-left: 4rem;
   font-weight: bolder;
   color: #ffffff;
-  margin-top: 5rem;
+  margin-top: 3rem;
   text-shadow: 3px 3px #dd4f6b;
 }
+.quote {
+  font-size: 58px;
+  font-family: 'Montserrat', sans-serif;
+  text-align: left;
+  margin-left: 4rem;
+  font-weight: bolder;
+  color: #ffffff;
+  margin-top: 3rem;
+  text-shadow: 3px 3px #dd4f6b;
+}
+.name {
+  font-size: 58px;
+  font-family: 'Montserrat', sans-serif;
+  text-align: left;
+  margin-left: 3rem;
+  font-weight: bolder;
+  color: #ffffff;
+  margin-top: 3rem;
+}
+.job {
+  font-size: 28px;
+  font-family: 'Montserrat', sans-serif;
+  text-align: left;
+  margin-left: 3rem;
+  font-weight: bolder;
+  color: #ffffff;
+  margin-top: 0rem;
+}
+.topic {
+  font-size: 58px;
+  font-family: 'Montserrat', sans-serif;
+  text-align: left;
+  margin-left: 4rem;
+  font-weight: bolder;
+  color: #ffffff;
+  margin-top: 5rem;
+}
+
 </style>
