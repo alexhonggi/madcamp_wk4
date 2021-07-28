@@ -16,7 +16,7 @@
     </transition>
     <!-- 밑에다 name, job, topic -->
     <transition name="fade2">
-      <p @click="pass = false" class = "beforeBack" v-bind:key="show" v-if="pass" :style="{backgroundColor:colorlist[index-1]}"><div class="name">{{users[index-1].name.split(' ')[0]}}</div><div class="surname">{{users[index-1].name.split(' ')[1]}}</div><div class="job">{{users[index-1].profession}}</div><div class="topic">{{users[index-1].dream}}</div></p>
+      <p @click="pass = false" class = "beforeBack" v-bind:key="show" v-if="pass" :style="{backgroundColor:colorlist[index-1]}"><div class="name">{{users[index-1].name.split(' ')[0]}}</div><div class="surname">{{users[index-1].name.split(' ')[1]}}</div><div class="job">{{users[index-1].profession}}</div><div class="bar"></div><div class="topic">{{users[index-1].dream}}</div></p>
     </transition>
     <transition name="fade2">
       <p @click="pass2 = false" class = "beforeBack" v-bind:key="show" v-if="pass2" :style="{backgroundColor:colorlist[index-1]}"><div class="name">{{users[index-1].name.split(' ')[0]}}</div><div class="surname">{{users[index-1].name.split(' ')[1]}}</div><div class="job">{{users[index-1].profession}}</div><div class="bar"></div><div class="topic">{{users[index-1].dream}}</div></p>
