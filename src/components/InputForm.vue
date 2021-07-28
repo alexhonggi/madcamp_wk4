@@ -154,6 +154,7 @@ textarea{
     resize: none;
 }
 .input_form{
+    margin-top:10vh;
     display: flex;
     flex-direction: column;
     justify-content: space-around;

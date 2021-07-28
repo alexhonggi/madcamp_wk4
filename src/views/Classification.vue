@@ -93,6 +93,7 @@ export default {
     box-shadow: -0.3vw -0.3vw 0 0.1vw #222222 inset;
     display: inline-block;
     opacity: 1;
+    text-shadow: 3px 3px #0b5ce2;
 }
 .secondblock{
     background: #0b5ce2;
@@ -104,6 +105,7 @@ export default {
     box-shadow: -0.3vw -0.3vw 0 0.1vw #222222 inset;
     display: inline-block;
     opacity: 1;
+    text-shadow: 3px 3px #d99134;
 }
 .thirdblock{
     background: #f5b338;
@@ -115,6 +117,7 @@ export default {
     box-shadow: -0.3vw -0.3vw 0 0.1vw #222222 inset;
     display: inline-block;
     opacity: 1;
+    text-shadow: 3px 3px #f53844;
 }
 .transitionUp{
     transition-delay: .5s;
