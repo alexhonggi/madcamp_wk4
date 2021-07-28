@@ -1,15 +1,9 @@
 <template>
     <div class="wrapper" :style="{backgroundColor:backgroundcolor}">
         <transition-group>
-<<<<<<< HEAD
             <div @mouseenter="changeBackground(0)" @click="clickevent(0)" class="firstblock" :class="transition[0]">Designer</div>
             <div @mouseenter="changeBackground(1)" @click="clickevent(1)" class="secondblock" :class="transition[1]">Developer</div>
             <div @mouseenter="changeBackground(2)" @click="clickevent(2)" class="thirdblock" :class="transition[2]">Manager</div>
-=======
-            <div @mouseenter="changeBackground(0)" @click="clickevent(0)" class="firstblock" :class="transition[0]"><div style="paddingTop:30vh">Designer</div></div>
-            <div @mouseenter="changeBackground(1)" @click="clickevent(1)" class="secondblock" :class="transition[1]"><div style="paddingTop:30vh">Technician</div></div>
-            <div @mouseenter="changeBackground(2)" @click="clickevent(2)" class="thirdblock" :class="transition[2]"><div style="paddingTop:30vh">Executive</div></div>
->>>>>>> dongjae
         </transition-group>        
     </div>
 </template>
