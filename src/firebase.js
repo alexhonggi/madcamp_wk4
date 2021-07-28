@@ -35,6 +35,11 @@ export const getUser = async googleId => {
     return user.exists ? user.data() : null;
 }
 
+export const getUserIdByName = async name => {
+    const snapshot = await usersCollection.where("name", "==", name).get();
+    return snapshot.docs[0].id
+}
+
 //좋아요시 like 배열에 추가
 export const onLike = (myId, targetId) => {
     usersCollection.doc(myId).update({
