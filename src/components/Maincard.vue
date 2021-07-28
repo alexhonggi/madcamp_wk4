@@ -2,25 +2,17 @@
 <transition name="fade">
   <div id="demo" v-if="updated">
     <transition name="fade">
-      <p @click="show = !show ; pass = true ; pass2 = false ; index++" class = "nextFront" v-bind:key="show" v-if="!show" :style="{backgroundColor:colorlist[index]}"><div class="quote">{{users[index].description}}</div></p>
+      <p @click="show = !show ; pass = true ; pass2 = false ; index++; click(colorlist[index-1])" class = "nextFront" v-bind:key="show" v-if="!show" :style="{backgroundColor:colorlist[index]}"><div class="quote">{{users[index].description}}</div></p>
     </transition>
     <transition name="fade3">
-<<<<<<< HEAD
-      <p class = "nextBack" v-bind:key="show" v-if="!show" :style="{backgroundColor:colorlist[index]}"><div class="name" >{{users[index].name}}</div><div class="job">{{users[index].profession}}</div><div class="topic">{{users[index].dream}}</div></p>
-=======
       <p class = "nextBack" v-bind:key="show" v-if="!show" :style="{backgroundColor:colorlist[index]}"><div class="name">{{users[index].name.split(' ')[0]}}</div><div class="surname">{{users[index].name.split(' ')[1]}}</div><div class="job" >{{users[index].profession}}</div><div class="bar"></div><div class="topic">{{users[index].dream}}</div></p>
->>>>>>> 06fd6fa370159b1cddc73984f0209debf82c5b9a
     </transition>
     <!-- 밑줄에 소개 -->
     <transition name="fade">
-      <p @click="show = !show ; pass2 = !pass2 ; pass = false ; index++" class = "nextFront" v-bind:key="show" v-if="show" :style="{backgroundColor:colorlist[index]}"><div class="quote">{{users[index].description}}</div></p>
+      <p @click="show = !show ; pass2 = !pass2 ; pass = false ; index++; click(colorlist[index-1])" class = "nextFront" v-bind:key="show" v-if="show" :style="{backgroundColor:colorlist[index]}"><div class="quote">{{users[index].description}}</div></p>
     </transition>
     <transition name="fade3">
-<<<<<<< HEAD
-      <p class = "nextBack" v-bind:key="show" v-if="show" :style="{backgroundColor:colorlist[index]}"><div class="name" >{{users[index].name}}</div><div class="job">{{users[index].profession}}</div><div class="topic">{{users[index].dream}}</div></p>
-=======
       <p class = "nextBack" v-bind:key="show" v-if="show" :style="{backgroundColor:colorlist[index]}"><div class="name">{{users[index].name.split(' ')[0]}}</div><div class="surname">{{users[index].name.split(' ')[1]}}</div><div class="job">{{users[index].profession}}</div><div class="bar"></div><div class="topic">{{users[index].dream}}</div></p>
->>>>>>> 06fd6fa370159b1cddc73984f0209debf82c5b9a
     </transition>
     <!-- 밑에다 name, job, topic -->
     <transition name="fade2">
@@ -68,14 +60,21 @@ import {getAllData} from '../firebase.js';
         this.colorlist.push(this.profclass[1])
       }else if(user.profession==="Manager"){
         this.colorlist.push(this.profclass[2])
+      }else{
+        this.colorlist.push(this.profclass[0])
       }
     })
     this.updated = true;
   },
   mounted(){
     console.log(this.users, this.userId);
-  }
-  
+  },
+  methods: {
+    click(color){
+      this.$emit('updateBackground', color);
+      console.log(color);
+    }
+  },
 }
 </script>
 
