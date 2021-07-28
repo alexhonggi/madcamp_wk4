@@ -4,21 +4,21 @@
       <p @click="show = !show ; pass = true ; pass2 = false ; index++" class = "nextFront" v-bind:key="show" v-if="!show"><div class="quote">{{users[index].description}}</div></p>
     </transition>
     <transition name="fade3">
-      <p class = "nextBack" v-bind:key="show" v-if="!show"><div class="name">{{users[index].name}}</div><div class="job">{{users[index].profession}}</div><div class="topic">{{users[index].dream}}</div></p>
+      <p class = "nextBack" v-bind:key="show" v-if="!show"><div class="name">{{users[index].name.split(' ')[0]}}</div><div class="surname">{{users[index].name.split(' ')[1]}}</div><div class="job">{{users[index].profession}}</div><div class="bar"></div><div class="topic">{{users[index].dream}}</div></p>
     </transition>
     <!-- 밑줄에 소개 -->
     <transition name="fade">
       <p @click="show = !show ; pass2 = !pass2 ; pass = false ; index++" class = "nextFront" v-bind:key="show" v-if="show" :style="{ color:[]}"><div class="quote">{{users[index].description}}</div></p>
     </transition>
     <transition name="fade3">
-      <p class = "nextBack" v-bind:key="show" v-if="show"><div class="name">{{users[index].name}}</div><div class="job">{{users[index].profession}}</div><div class="topic">{{users[index].dream}}</div></p>
+      <p class = "nextBack" v-bind:key="show" v-if="show"><div class="name">{{users[index].name.split(' ')[0]}}</div><div class="surname">{{users[index].name.split(' ')[1]}}</div><div class="job">{{users[index].profession}}</div><div class="bar"></div><div class="topic">{{users[index].dream}}</div></p>
     </transition>
     <!-- 밑에다 name, job, topic -->
     <transition name="fade2">
-      <p @click="pass = false" class = "beforeBack" v-bind:key="show" v-if="pass"><div class="name">{{users[index].name}}</div><div class="job">{{users[index].profession}}</div><div class="topic">{{users[index].dream}}</div></p>
+      <p @click="pass = false" class = "beforeBack" v-bind:key="show" v-if="pass"><div class="name">{{users[index].name.split(' ')[0]}}</div><div class="surname">{{users[index].name.split(' ')[1]}}</div><div class="job">{{users[index].profession}}</div><div class="bar"></div><div class="topic">{{users[index].dream}}</div></p>
     </transition>
     <transition name="fade2">
-      <p @click="pass2 = false" class = "beforeBack" v-bind:key="show" v-if="pass2"><div class="name">{{users[index].name}}</div><div class="job">{{users[index].profession}}</div><div class="topic">{{users[index].dream}}</div></p>
+      <p @click="pass2 = false" class = "beforeBack" v-bind:key="show" v-if="pass2"><div class="name">{{users[index].name.split(' ')[0]}}</div><div class="surname">{{users[index].name.split(' ')[1]}}</div><div class="job">{{users[index].profession}}</div><div class="bar"></div><div class="topic">{{users[index].dream}}</div></p>
     </transition>
     
   </div>
@@ -259,9 +259,10 @@ import {getAllData} from '../firebase.js';
   font-family: 'Montserrat', sans-serif;
   text-align: left;
   margin-left: 4rem;
+  margin-right: 4rem;
   font-weight: bolder;
   color: #ffffff;
-  margin-top: 3rem;
+  margin-top: 4rem;
   text-shadow: 3px 3px #dd4f6b;
 }
 .name {
@@ -273,23 +274,44 @@ import {getAllData} from '../firebase.js';
   color: #ffffff;
   margin-top: 3rem;
 }
-.job {
-  font-size: 28px;
+.surname {
+  font-size: 58px;
   font-family: 'Montserrat', sans-serif;
   text-align: left;
   margin-left: 3rem;
   font-weight: bolder;
   color: #ffffff;
-  margin-top: 0rem;
+  margin-top: -1.7rem;
 }
-.topic {
-  font-size: 58px;
+.job {
+  font-size: 28px;
   font-family: 'Montserrat', sans-serif;
   text-align: left;
-  margin-left: 4rem;
+  margin-left: 3.2rem;
   font-weight: bolder;
   color: #ffffff;
-  margin-top: 5rem;
+  margin-top: 0rem;
+  border-width: 3px;
+  border-color: white;
+  width: 150px;
+}
+.bar {
+  height: 5px;
+  width: 300px;
+  color: #FFFFFF;
+  background-color: #FFFFFF;
+  margin-left: 3.2rem;
+  margin-top: 0.7rem;
+}
+.topic {
+  font-size: 48px;
+  font-family: 'Montserrat', sans-serif;
+  text-align: left;
+  margin-left: 3rem;
+  font-weight: bolder;
+  color: #ffffff;
+  margin-top: 2rem;
+  margin-right: 3rem;
 }
 
 </style>
