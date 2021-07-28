@@ -36,7 +36,7 @@ export default {
 
 <style scoped>
 .home {
-  background-color: #111111;
+  background-color: #161A31;
   width: 100%;
   min-height: 92.5vh;
   max-height: max-content;
