@@ -1,6 +1,7 @@
 <template>
   <div class="home">
-    <Maincard :userId="userId" class="scroll"/>
+    <div class="element"></div>
+    <Maincard class="scroll"/>
   </div>
 </template>
 
@@ -13,12 +14,11 @@ export default {
   data(){
     return{
       items:['하나','둘','셋'],
-      number:0,
-      userId: ''
+      number:0
     }
   },
-  mounted(){
-    this.userId = this.$route.params.userId;
+  methods:{
+
   },
   components: {
     Maincard,
@@ -29,10 +29,25 @@ export default {
 
 <style scoped>
 .home {
-  background-color: #f53844;
+  background: #F5B339;
   width: 100%;
   min-height: 92.5vh;
   max-height: max-content;
   margin-top:7.5vh;
 }
+/* .element {
+  width: 100vw;
+  height: 100vh;
+  background: 
+    radial-gradient(
+      farthest-side at bottom left,
+      #0B5CE2, 
+      transparent
+    ),
+    radial-gradient(
+      farthest-side at bottom right,
+      #f5b338, 
+      transparent 
+    );
+} */
 </style>
