@@ -65,14 +65,21 @@ import {getAllData} from '../firebase.js';
       }else if(user.profession==="Manager"){
         this.colorlist.push(this.profclass[2]);
         this.whichnum.push(0);
+      }else{
+        this.colorlist.push(this.profclass[0])
       }
     })
     this.updated = true;
   },
   mounted(){
     console.log(this.users, this.userId);
-  }
-  
+  },
+  methods: {
+    click(color){
+      this.$emit('updateBackground', color);
+      console.log(color);
+    }
+  },
 }
 </script>
 
@@ -144,7 +151,6 @@ import {getAllData} from '../firebase.js';
   backface-visibility: hidden;
   border-radius: 20px;
   box-shadow: -3px -3px 1px 3.0px inset #742131;
-  
   font-size: 58px;
   font-family: 'Montserrat', sans-serif;
   text-align: left;
