@@ -119,7 +119,6 @@ import {getAllData} from '../firebase.js';
   opacity: 0;
   transform: translateX(100px);
 }
-
 .nextFront{
   color:black;
   font-size:30pt;
@@ -135,7 +134,6 @@ import {getAllData} from '../firebase.js';
   backface-visibility: hidden;
   border-radius: 20px;
   box-shadow: -3px -3px 1px 3.0px inset #742131;
-  
   font-size: 58px;
   font-family: 'Montserrat', sans-serif;
   text-align: left;
