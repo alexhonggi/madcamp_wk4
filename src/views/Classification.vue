@@ -79,7 +79,7 @@ export default {
   margin-top:0;
   transition: .5s;
   color: white;
-  font-size:30pt;
+  font-size:50pt;
   top:7.5vh;
   font-weight: 700;
 }
@@ -90,7 +90,8 @@ export default {
     margin:2vw;
     margin-top:15vh;
     border-radius: 1vw;
-    box-shadow: -0.3vw -0.3vw 0 0.1vw black inset;
+    padding-top:27vh;
+    box-shadow: -0.3vw -0.3vw 0 0.1vw #222222 inset;
     display: inline-block;
     opacity: 1;
 }
@@ -100,7 +101,8 @@ export default {
     height:70vh;
     margin:2vw;
     border-radius: 1vw;
-    box-shadow: -0.3vw -0.3vw 0 0.1vw black inset;
+    padding-top:27vh;
+    box-shadow: -0.3vw -0.3vw 0 0.1vw #222222 inset;
     display: inline-block;
     opacity: 1;
 }
@@ -110,7 +112,8 @@ export default {
     height:70vh;
     margin:2vw;
     border-radius: 1vw;
-    box-shadow: -0.3vw -0.3vw 0 0.1vw black inset;
+    padding-top:27vh;
+    box-shadow: -0.3vw -0.3vw 0 0.1vw #222222 inset;
     display: inline-block;
     opacity: 1;
 }

@@ -1,27 +1,28 @@
 <template>
+<transition name="fade">
   <div id="demo" v-if="updated">
     <transition name="fade">
-      <p @click="show = !show ; pass = true ; pass2 = false ; index++" class = "nextFront" v-bind:key="show" v-if="!show"><div class="quote">{{users[index].description}}</div></p>
+      <p @click="show = !show ; pass = true ; pass2 = false ; index++" class = "nextFront" v-bind:key="show" v-if="!show" :style="{backgroundColor:colorlist[index]}"><div class="quote">{{users[index].description}}</div></p>
     </transition>
     <transition name="fade3">
-      <p class = "nextBack" v-bind:key="show" v-if="!show"><div class="name">{{users[index].name.split(' ')[0]}}</div><div class="surname">{{users[index].name.split(' ')[1]}}</div><div class="job">{{users[index].profession}}</div><div class="bar"></div><div class="topic">{{users[index].dream}}</div></p>
+      <p class = "nextBack" v-bind:key="show" v-if="!show"><div class="name">{{users[index].name.split(' ')[0]}}</div><div class="surname">{{users[index].name.split(' ')[1]}}</div><div class="job" :style="{backgroundColor:colorlist[index]}">{{users[index].profession}}</div><div class="bar"></div><div class="topic">{{users[index].dream}}</div></p>
     </transition>
     <!-- 밑줄에 소개 -->
     <transition name="fade">
-      <p @click="show = !show ; pass2 = !pass2 ; pass = false ; index++" class = "nextFront" v-bind:key="show" v-if="show" :style="{ color:[]}"><div class="quote">{{users[index].description}}</div></p>
+      <p @click="show = !show ; pass2 = !pass2 ; pass = false ; index++" class = "nextFront" v-bind:key="show" v-if="show" :style="{backgroundColor:colorlist[index]}"><div class="quote">{{users[index].description}}</div></p>
     </transition>
     <transition name="fade3">
-      <p class = "nextBack" v-bind:key="show" v-if="show"><div class="name">{{users[index].name.split(' ')[0]}}</div><div class="surname">{{users[index].name.split(' ')[1]}}</div><div class="job">{{users[index].profession}}</div><div class="bar"></div><div class="topic">{{users[index].dream}}</div></p>
+      <p class = "nextBack" v-bind:key="show" v-if="show"><div class="name">{{users[index].name.split(' ')[0]}}</div><div class="surname">{{users[index].name.split(' ')[1]}}</div><div class="job" :style="{backgroundColor:colorlist[index]}">{{users[index].profession}}</div><div class="bar"></div><div class="topic">{{users[index].dream}}</div></p>
     </transition>
     <!-- 밑에다 name, job, topic -->
     <transition name="fade2">
-      <p @click="pass = false" class = "beforeBack" v-bind:key="show" v-if="pass"><div class="name">{{users[index].name.split(' ')[0]}}</div><div class="surname">{{users[index].name.split(' ')[1]}}</div><div class="job">{{users[index].profession}}</div><div class="bar"></div><div class="topic">{{users[index].dream}}</div></p>
+      <p @click="pass = false" class = "beforeBack" v-bind:key="show" v-if="pass" :style="{backgroundColor:colorlist[index-1]}"><div class="name">{{users[index-1].name.split(' ')[0]}}</div><div class="surname">{{users[index-1].name.split(' ')[1]}}</div><div class="job">{{users[index-1].profession}}</div><div class="topic">{{users[index-1].dream}}</div></p>
     </transition>
     <transition name="fade2">
-      <p @click="pass2 = false" class = "beforeBack" v-bind:key="show" v-if="pass2"><div class="name">{{users[index].name.split(' ')[0]}}</div><div class="surname">{{users[index].name.split(' ')[1]}}</div><div class="job">{{users[index].profession}}</div><div class="bar"></div><div class="topic">{{users[index].dream}}</div></p>
+      <p @click="pass2 = false" class = "beforeBack" v-bind:key="show" v-if="pass2" :style="{backgroundColor:colorlist[index-1]}"><div class="name">{{users[index-1].name.split(' ')[0]}}</div><div class="surname">{{users[index-1].name.split(' ')[1]}}</div><div class="job">{{users[index-1].profession}}</div><div class="bar"></div><div class="topic">{{users[index-1].dream}}</div></p>
     </transition>
-    
   </div>
+</transition>
 </template>
 
 <script>
@@ -41,16 +42,24 @@ import {getAllData} from '../firebase.js';
       index:0,
       users: [],
       updated: false,
+      profclass:["#f53844","#0b5ce2","#f5b338"],
+      colorlist:[],
     }
   },
   async beforeMount(){
-    for(let i=0;i<4;i++){
-      this.elements.push({ name:i+'입니다', intro:'안녕하세요'+i+'입니다'})
-    }
     var allUser = await getAllData();
     allUser.forEach(doc=>{
       if(doc.id != this.userId){
         this.users.push(doc.data());
+      }
+    })
+    this.users.forEach(user=>{
+      if(user.profession==="Designer"){
+        this.colorlist.push(this.profclass[0])
+      }else if(user.profession==="Developer"){
+        this.colorlist.push(this.profclass[1])
+      }else if(user.profession==="Manager"){
+        this.colorlist.push(this.profclass[2])
       }
     })
     this.updated = true;
@@ -104,84 +113,6 @@ import {getAllData} from '../firebase.js';
   transform: translateX(100px);
 }
 
-.designer {
-  color:black;
-  font-size:30pt;
-  width:50vh;
-  height:75vh;
-  left:40vh;
-  position: absolute;
-  top:10vh;
-  background: #FB4F72;
-  z-index: 2;
-  -webkit-backface-visibility: hidden;  /* Chrome, Safari, Opera */
-  backface-visibility: hidden;
-  border-radius: 20px;
-  margin-top: 30px;
-  box-shadow: -3px -3px 1px 3.0px inset #742131;
-  
-  font-size: 58px;
-  font-family: 'Montserrat', sans-serif;
-  text-align: left;
-  margin-left: 4rem;
-  font-weight: bolder;
-  color: #ffffff;
-  margin-top: 5rem;
-  text-shadow: 3px 3px #dd4f6b;
-}
-.developer {
-  color:black;
-  font-size:30pt;
-  width:50vh;
-  height:75vh;
-  left:40vh;
-  position: absolute;
-  top:10vh;
-  background: #FB4F72;
-  z-index: 2;
-  -webkit-backface-visibility: hidden;  /* Chrome, Safari, Opera */
-  backface-visibility: hidden;
-  border-radius: 20px;
-  margin-top: 30px;
-  box-shadow: -3px -3px 1px 3.0px inset #742131;
-  
-  font-size: 58px;
-  font-family: 'Montserrat', sans-serif;
-  text-align: left;
-  margin-left: 4rem;
-  font-weight: bolder;
-  color: #ffffff;
-  margin-top: 5rem;
-  text-shadow: 3px 3px #dd4f6b;
-}
-
-.manager {
-  color:black;
-  font-size:30pt;
-  width:50vh;
-  height:75vh;
-  left:40vh;
-  position: absolute;
-  top:10vh;
-  background: #FB4F72;
-  z-index: 2;
-  -webkit-backface-visibility: hidden;  /* Chrome, Safari, Opera */
-  backface-visibility: hidden;
-  border-radius: 20px;
-  margin-top: 30px;
-  box-shadow: -3px -3px 1px 3.0px inset #742131;
-  
-  font-size: 58px;
-  font-family: 'Montserrat', sans-serif;
-  text-align: left;
-  margin-left: 4rem;
-  font-weight: bolder;
-  color: #ffffff;
-  margin-top: 5rem;
-  text-shadow: 3px 3px #dd4f6b;
-}
-
-
 .nextFront{
   color:black;
   font-size:30pt;
@@ -189,14 +120,13 @@ import {getAllData} from '../firebase.js';
   height:75vh;
   left:40vh;
   position: absolute;
-  top:10vh; /* margin-top: 10vh */
-  background: #FB4F72;
+  top:16vh; /* margin-top: 10vh */
+  background-color: #f53844;
   z-index: 2;
   border-radius: 3vh;
   -webkit-backface-visibility: hidden;  /* Chrome, Safari, Opera */
   backface-visibility: hidden;
   border-radius: 20px;
-  margin-top: 30px;
   box-shadow: -3px -3px 1px 3.0px inset #742131;
   
   font-size: 58px;
@@ -205,8 +135,7 @@ import {getAllData} from '../firebase.js';
   margin-left: 4rem;
   font-weight: bolder;
   color: #ffffff;
-  margin-top: 5rem;
-  text-shadow: 3px 3px #dd4f6b;
+  text-shadow: 3px 3px #f53844;
 }
 .nextBack{
   color:black;
@@ -215,13 +144,12 @@ import {getAllData} from '../firebase.js';
   height:75vh;
   left:40vh;
   position: absolute;
-  top:10vh;
-  background: #FB4F72;
+  top:16vh;
+  background-color: #f53844;
   z-index: 1;
   -webkit-backface-visibility: hidden;  /* Chrome, Safari, Opera */
   backface-visibility: hidden;
   border-radius: 20px;
-  margin-top: 30px;
   box-shadow: -3px -3px 0px 2.0px inset #4d4d4d;
     font-size: 58px;
   font-family: 'Montserrat', sans-serif;
@@ -229,19 +157,18 @@ import {getAllData} from '../firebase.js';
   margin-left: 4rem;
   font-weight: bolder;
   color: #ffffff;
-  margin-top: 5rem;
   text-shadow: 3px 3px #726769;
 }
 .beforeBack{
   color:black;
   font-size:30pt;
-  background: #0B5CE2;
+  background-color: #0B5CE2;
   width:50vh;
   border-radius: 3vh;
   height:75vh;
   left:99vh;
+  top:16vh;
   position: absolute;
-  margin-top: 30px;
   border-radius: 20px;
   box-shadow: -3px -3px 1px 3.0px inset #052050;
   font-size: 58px;
@@ -250,7 +177,6 @@ import {getAllData} from '../firebase.js';
   margin-left: 4rem;
   font-weight: bolder;
   color: #ffffff;
-  margin-top: 6.4rem;
   text-shadow: 3px 3px #0b4fb6;
 }
 
