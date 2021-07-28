@@ -2,14 +2,14 @@
 <transition name="fade">
   <div id="demo" v-if="updated">
     <transition name="fade">
-      <p @click="show = !show ; pass = true ; pass2 = false ; index++" class = "nextFront" v-bind:key="show" v-if="!show" :style="{backgroundColor:colorlist[index]}"><div class="quote">{{users[index].description}}</div></p>
+      <p @click="show = !show ; pass = true ; pass2 = false ; index++; click(colorlist[index-1])" class = "nextFront" v-bind:key="show" v-if="!show" :style="{backgroundColor:colorlist[index]}"><div class="quote">{{users[index].description}}</div></p>
     </transition>
     <transition name="fade3">
       <p class = "nextBack" v-bind:key="show" v-if="!show" :style="{backgroundColor:colorlist[index]}"><div class="name">{{users[index].name.split(' ')[0]}}</div><div class="surname">{{users[index].name.split(' ')[1]}}</div><div class="job" >{{users[index].profession}}</div><div class="bar"></div><div class="topic">{{users[index].dream}}</div></p>
     </transition>
     <!-- 밑줄에 소개 -->
     <transition name="fade">
-      <p @click="show = !show ; pass2 = !pass2 ; pass = false ; index++" class = "nextFront" v-bind:key="show" v-if="show" :style="{backgroundColor:colorlist[index]}"><div class="quote">{{users[index].description}}</div></p>
+      <p @click="show = !show ; pass2 = !pass2 ; pass = false ; index++; click(colorlist[index-1])" class = "nextFront" v-bind:key="show" v-if="show" :style="{backgroundColor:colorlist[index]}"><div class="quote">{{users[index].description}}</div></p>
     </transition>
     <transition name="fade3">
       <p class = "nextBack" v-bind:key="show" v-if="show" :style="{backgroundColor:colorlist[index]}"><div class="name">{{users[index].name.split(' ')[0]}}</div><div class="surname">{{users[index].name.split(' ')[1]}}</div><div class="job">{{users[index].profession}}</div><div class="bar"></div><div class="topic">{{users[index].dream}}</div></p>
@@ -60,14 +60,21 @@ import {getAllData} from '../firebase.js';
         this.colorlist.push(this.profclass[1])
       }else if(user.profession==="Manager"){
         this.colorlist.push(this.profclass[2])
+      }else{
+        this.colorlist.push(this.profclass[0])
       }
     })
     this.updated = true;
   },
   mounted(){
     console.log(this.users, this.userId);
-  }
-  
+  },
+  methods: {
+    click(color){
+      this.$emit('updateBackground', color);
+      console.log(color);
+    }
+  },
 }
 </script>
 
@@ -112,7 +119,6 @@ import {getAllData} from '../firebase.js';
   opacity: 0;
   transform: translateX(100px);
 }
-
 .nextFront{
   color:black;
   font-size:30pt;
@@ -128,7 +134,6 @@ import {getAllData} from '../firebase.js';
   backface-visibility: hidden;
   border-radius: 20px;
   box-shadow: -3px -3px 1px 3.0px inset #742131;
-  
   font-size: 58px;
   font-family: 'Montserrat', sans-serif;
   text-align: left;

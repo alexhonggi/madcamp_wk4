@@ -1,7 +1,7 @@
 <template>
-  <div class="home">
+  <div class="home" >
     <div class="element"></div>
-    <Maincard v-if="userId" :userId="userId" class="scroll"/>
+    <Maincard @updateBackground="changeColor" v-if="userId" :userId="userId" class="scroll"/>
   </div>
 </template>
 
@@ -15,11 +15,14 @@ export default {
     return{
       items:['하나','둘','셋'],
       number:0,
-      userId: ''
+      userId: '',
+      bgcolor:"#111111"
     }
   },
   methods:{
-
+    changeColor(color){
+      this.bgcolor=color
+    }
   },
   mounted(){
     this.userId = this.$route.params.userId;
@@ -33,7 +36,7 @@ export default {
 
 <style scoped>
 .home {
-  background: #F5B339;
+  background-color: #111111;
   width: 100%;
   min-height: 92.5vh;
   max-height: max-content;

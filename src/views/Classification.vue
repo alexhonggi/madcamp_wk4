@@ -18,7 +18,7 @@ export default {
     data(){
         return{
             backgroundcolor:"#ffffff",
-            backgroundcolorList:["#ad242d","#0342ab","#d99134"],    // 첫번째 칼라 #ba1c26
+            backgroundcolorList:["#ba1c26","#0342ab","#d99134"],    // 첫번째 칼라 #ba1c26
             backgroundcolorClick:["#f53844","#0b5ce2","#f5b338"],
             transition:['none','none','none'],
             userId: '',
