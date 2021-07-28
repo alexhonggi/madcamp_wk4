@@ -1,7 +1,7 @@
 <template>
 <body>
   <div class="home">
-    <Verticalscroll v-if="userId" :userId="userId" prof="Executive"/>
+    <Verticalscroll v-if="userId" :userId="userId" prof="Manager"/>
   </div>
 </body>
 </template>
