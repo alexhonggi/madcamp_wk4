@@ -196,16 +196,6 @@
   margin-top: 3rem;
   text-shadow: 3px 3px #dd4f6b;
 }
-.quote {
-  font-size: 58px;
-  font-family: 'Montserrat', sans-serif;
-  text-align: left;
-  margin-left: 4rem;
-  font-weight: bolder;
-  color: #ffffff;
-  margin-top: 3rem;
-  text-shadow: 3px 3px #dd4f6b;
-}
 .name {
   font-size: 58px;
   font-family: 'Montserrat', sans-serif;
