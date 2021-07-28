@@ -20,8 +20,7 @@
     <transition name="fade2">
       <p @click="pass2 = false" class = "beforeBack" v-bind:key="show" v-if="pass2"><div class="name">{{users[index].name}}</div><div class="job">{{users[index].profession}}</div><div class="topic">{{users[index].dream}}</div></p>
     </transition>
-    
-  </div>
+  </div>  
 </template>
 
 <script>
