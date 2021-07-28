@@ -1,7 +1,7 @@
 <template>
 <body>
   <div class="home">
-    <Verticalscroll/>
+    <Verticalscroll v-if="userId" :userId="userId" prof="Technician"/>
   </div>
 </body>
 </template>
@@ -16,8 +16,12 @@ export default {
   data(){
     return{
       items:['하나','둘','셋'],
-      number:0
+      number:0,
+      userId: '',
     }
+  },
+  mounted(){
+        this.userId = this.$route.params.userId;
   },
   methods:{
 
