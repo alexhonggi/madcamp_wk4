@@ -12,7 +12,7 @@ import Slider from '@/components/Slider.vue'
 import Maincard from '@/components/Maincard.vue'
 import Verticalscroll from '@/components/Verticalscroll.vue'
 export default {
-  name: 'Executive',
+  name: 'Manager',
   data(){
     return{
       items:['하나','둘','셋'],
