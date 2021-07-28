@@ -48,9 +48,7 @@
                     "
                     height="80"
                     width="80"
-                    srcset="
-                      https://secure.gravatar.com/avatar/d478c83f5a06bd37f7087e19478b74bf?s=160&amp;d=retro&amp;r=pg 2x
-                    "
+                    srcset=" "
                     data-lazy-loaded="1"
                   /><noscript
                     ><img
