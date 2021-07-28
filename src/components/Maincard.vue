@@ -37,7 +37,7 @@
     }
   },
   beforeMount(){
-    for(let i=0;i<30;i++){
+    for(let i=0;i<100;i++){
       this.elements.push({name:i+'입니다', intro:'안녕하세요'+i+'입니다'})
     }
   }

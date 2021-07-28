@@ -7,7 +7,7 @@
       <router-link to="/card">Card</router-link> |
       <router-link to="/executive" class="executive" >Executive</router-link> |
       <router-link to="/technician" class="technician">Technician</router-link> |
-      <router-link to="/designer" class="designer">Designer</router-link>
+      <router-link to="/designer" class="designer">Designer</router-link> |
       <router-link to="/classification">Classification</router-link>
     </div>
     <router-view class="routerview" @loggedIn="handleLoggedIn"/>

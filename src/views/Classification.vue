@@ -1,9 +1,9 @@
 <template>
     <div class="wrapper" :style="{backgroundColor:backgroundcolor}">
         <transition-group>
-            <div @mouseenter="changeBackground(0)" @click="clickevent(0)" class="firstblock" :class="transition[0]">Designer</div>
-            <div @mouseenter="changeBackground(1)" @click="clickevent(1)" class="secondblock" :class="transition[1]">Technician</div>
-            <div @mouseenter="changeBackground(2)" @click="clickevent(2)" class="thirdblock" :class="transition[2]">Executive</div>
+            <div @mouseenter="changeBackground(0)" @click="clickevent(0)" class="firstblock" :class="transition[0]"><div style="paddingTop:30vh">Designer</div></div>
+            <div @mouseenter="changeBackground(1)" @click="clickevent(1)" class="secondblock" :class="transition[1]"><div style="paddingTop:30vh">Technician</div></div>
+            <div @mouseenter="changeBackground(2)" @click="clickevent(2)" class="thirdblock" :class="transition[2]"><div style="paddingTop:30vh">Executive</div></div>
         </transition-group>        
     </div>
 </template>
@@ -15,10 +15,13 @@ import Maincard from '@/components/Maincard.vue'
 import Verticalscroll from '@/components/Verticalscroll.vue'
 export default {
   name: 'Classification',
+  mounted(){
+      this.transition=['slidetransition','slidetransition','slidetransition'];
+  },
   data(){
     return{
         backgroundcolor:"#ffffff",
-        backgroundcolorList:["#ad242d","#0342ab","#d99134"],
+        backgroundcolorList:["#ba1c26","#0342ab","#d99134"],
         backgroundcolorClick:["#f53844","#0b5ce2","#f5b338"],
         transition:['none','none','none'],
     }
@@ -77,11 +80,12 @@ export default {
   color: white;
   font-size:30pt;
   top:7.5vh;
+  font-weight: 700;
 }
 .firstblock{
     background: #f53844;
     width:25%;
-    height:66vh;
+    height:70vh;
     margin:2vw;
     margin-top:15vh;
     border-radius: 1vw;
@@ -92,7 +96,7 @@ export default {
 .secondblock{
     background: #0b5ce2;
     width:25%;
-    height:66vh;
+    height:70vh;
     margin:2vw;
     border-radius: 1vw;
     box-shadow: -0.3vw -0.3vw 0 0.1vw black inset;
@@ -102,7 +106,7 @@ export default {
 .thirdblock{
     background: #f5b338;
     width:25%;
-    height:66vh;
+    height:70vh;
     margin:2vw;
     border-radius: 1vw;
     box-shadow: -0.3vw -0.3vw 0 0.1vw black inset;
@@ -119,5 +123,19 @@ export default {
     transition:.5s;
     transform: translateY(10vh);
     opacity:0;
+}
+.slidetransition{
+    animation-duration: .5s;
+    animation-name: Slideup;
+}
+@keyframes Slideup {
+    from{
+        opacity: 0;
+        transform: translateY(10vh);
+    }
+    to{
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 </style>
