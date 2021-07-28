@@ -1,19 +1,19 @@
 <template>
     <form class="input_form" @submit.prevent="submitUser">
         <span class="form_title">Create Your Card</span>
-        <q-input class="custom_input" filled  v-model="name" label="Your name" dark autocomplete="off">
+        <q-input class="custom_input" filled  v-model="name" label="Your name" dark autocomplete="off" required>
             <template v-slot:prepend>
                 <q-icon name="person"></q-icon>
             </template>
         </q-input>
 
-        <q-input class="custom_input" filled color="green" type="tel" dark label="Phone Number" v-model="phonenumber" @keyup="getPhoneMask" autocomplete="off">
+        <q-input class="custom_input" filled color="green" type="tel" dark label="Phone Number" v-model="phonenumber" @keyup="getPhoneMask" autocomplete="off" required>
             <template v-slot:prepend>
                 <q-icon name="call"></q-icon>
             </template>
         </q-input>
 
-        <q-input class="custom_input" filled color="yellow" type="email" dark label="Email Address" v-model="email" autocomplete="off">
+        <q-input class="custom_input" filled color="yellow" type="email" dark label="Email Address" v-model="email" autocomplete="off" required>
             <template v-slot:prepend>
                 <q-icon name="email"></q-icon>
             </template>
@@ -26,19 +26,19 @@
         </q-file>
 
         <q-select dark class="custom_input" color="cyan" use-input  filled v-model="profession" :options="options" label="Profession"
-                    transition-show="flip-up" transition-hide="flip-down">
+                    transition-show="flip-up" transition-hide="flip-down" required>
             <template v-slot:prepend>
                 <q-icon name="assignment_ind"></q-icon>
             </template>
         </q-select>
 
-        <q-input class="custom_input" filled color="teal" type="text" maxlength="50" dark label="Describe Yourself in one sentence" v-model="description" autocomplete="off">
+        <q-input class="custom_input" filled color="teal" type="text" maxlength="50" dark label="Describe Yourself in one sentence" v-model="description" autocomplete="off" required>
             <template v-slot:prepend>
                 <q-icon name="description"></q-icon>
             </template>
         </q-input>
 
-        <q-input class="custom_input" filled color="amber" type="text" maxlength="50" dark label="What do you wish to accomplish?" v-model="dream" autocomplete="off">
+        <q-input class="custom_input" filled color="amber" type="text" maxlength="50" dark label="What do you wish to accomplish?" v-model="dream" autocomplete="off" required>
             <template v-slot:prepend>
                 <q-icon name="info"></q-icon>
             </template>
@@ -64,7 +64,7 @@ export default {
             email: '',
             description: '',
             dream: '',
-            image: '',
+            image: null,
         }
     },
     methods: {
@@ -82,7 +82,7 @@ export default {
                 like: []
             };
             createUser(googleId, user);
-            this.image = '';
+            this.image = null;
             this.name = '';
             this.profession = '';
             this.phonenumber = '';
