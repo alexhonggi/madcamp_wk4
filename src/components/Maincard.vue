@@ -28,6 +28,9 @@
 import {getAllData} from '../firebase.js';
 
  export default {
+  props:{
+    userId: String
+  },
   name: 'Home',
   data(){
     return{
@@ -46,12 +49,14 @@ import {getAllData} from '../firebase.js';
     }
     var allUser = await getAllData();
     allUser.forEach(doc=>{
-      this.users.push(doc.data());
+      if(doc.id != this.userId){
+        this.users.push(doc.data());
+      }
     })
     this.updated = true;
   },
   mounted(){
-    console.log(this.users);
+    console.log(this.users, this.userId);
   }
   
 }

@@ -12,10 +12,13 @@
 </template>
 
 <script>
+import {getProfData} from '../firebase.js';
+
 export default {
     name: 'Verticalscroll',
-    props: {
-
+    props:{
+      userId: String,
+      prof: String
     },
     data(){
         return{
@@ -30,7 +33,18 @@ export default {
             isMousedrgged:false,
             isMousepressed:false,
             starty:0,
+            users: [],
+            updated: false,
         }
+    },
+    async beforeMount(){
+      var allUser = await getProfData(this.prof);
+      allUser.forEach(doc=>{
+        if(doc.id != this.userId){
+          this.users.push(doc.data());
+        }
+      })
+      this.updated = true;
     },
     mounted(){
       for(let i=0;i<20;i++){
@@ -38,6 +52,7 @@ export default {
           this.messages.push(i+"입니다.")
         }, i*50>300?300:i*50);
       } 
+      console.log(this.users)
     },
     methods:{
       heartClick(idx){
