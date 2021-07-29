@@ -65,7 +65,11 @@ export default {
             description: '',
             dream: '',
             image: null,
+            
         }
+    },
+    props:{
+        userId:String,
     },
     methods: {
         async submitUser(){
@@ -89,6 +93,8 @@ export default {
             this.email = '';
             this.description = '';
             this.dream = '';
+            this.$emit("shownav");
+            this.$router.push({name: 'Home', params: {userId: this.userId}});
         },
         getPhoneMask(){
             let res = this.getMask(this.phonenumber);
