@@ -17,7 +17,7 @@
 </template>
 
 <script>
-import {getProfData} from '../firebase.js';
+import {getProfData, onLike, getUserIdByName} from '../firebase.js';
 
 export default {
     name: 'Verticalscroll',
@@ -98,10 +98,13 @@ export default {
           this.isMousedrgged=true;
         }
       },
-      mouseUp(idx,event){
+      async mouseUp(idx,event){
         if(this.isMousedrgged){
           console.log(event.y-this.starty);
           if((event.y-this.starty)<-100){
+            const targetId = await getUserIdByName(this.users[idx].name);
+            onLike(this.userId, targetId);
+            console.log(targetId);
             this.users.splice(idx,1);
             this.flipAnimationlist.splice(idx,1);
           }
