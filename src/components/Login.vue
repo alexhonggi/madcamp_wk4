@@ -35,7 +35,7 @@ export default {
                 this.user = googleUser.getBasicProfile().getEmail();
                 console.log("getBasicProfile", googleUser.getBasicProfile());
                 this.$emit('loggedIn', googleUser.getBasicProfile().getEmail());
-                const cardExist = getUser(this.user);
+                const cardExist = await getUser(this.user);
                 console.log(cardExist);
                 if(cardExist == null){
                     this.$router.push({name: 'CreateCard', params: {userId: this.user}});
