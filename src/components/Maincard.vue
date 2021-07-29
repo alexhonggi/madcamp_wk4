@@ -134,12 +134,15 @@ import {getAllData, getUserIdByName, onLike} from '../firebase.js';
 
 .shadowRed {
   text-shadow: 3px 3px #f53844;
+  box-shadow: -3px -3px 1px 3.0px inset #bd8621;
 }
 .shadowBlue {
   text-shadow: 3px 3px #0b4fb6;
+  box-shadow: -3px -3px 1px 3.0px inset #742131; 
 }
 .shadowYellow {
   text-shadow: 2.5px 2.5px #f5b338;
+  box-shadow: -3px -3px 1px 3.0px inset #052050;
 }
 
 .nextFront{
