@@ -31,13 +31,7 @@ export default {
                 }
                 console.log("googleUser", googleUser);
                 this.user = googleUser.getBasicProfile().getEmail();
-                // console.log("getId", this.user);
                 console.log("getBasicProfile", googleUser.getBasicProfile());
-                // console.log("getAuthResponse", googleUser.getAuthResponse());
-                // console.log(
-                //     "getAuthResponse",
-                //     this.$gAuth.instance.currentUser.get().getAuthResponse()
-                // );
                 this.$emit('loggedIn', googleUser.getBasicProfile().getEmail());
                 this.$router.push({name: 'CreateCard', params: {userId: this.user}});
             } catch (error) {
