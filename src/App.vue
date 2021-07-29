@@ -1,6 +1,6 @@
 <template>
   <body >
-    <div id="nav">
+    <div id="nav" v-if="navvisible">
       <router-link :to='{name: "Home", params: {userId: this.id}}'>Home</router-link> |
       <router-link :to='{name: "About", params: {userId: this.id}}'>My Cards</router-link> |
       <router-link to="/card">Create Card</router-link> |
@@ -12,7 +12,7 @@
         <router-link to="/classification">Classification</router-link>
       -->
     </div>
-    <router-view class="routerview" @loggedIn="handleLoggedIn"/>
+    <router-view class="routerview" @shownav="shownav" @loggedIn="handleLoggedIn"/>
   </body>
 </template>
 
@@ -21,13 +21,18 @@
 export default {
   data(){
     return {
-      id: ''
+      id: '',
+      navvisible:false,
     }
   },
   methods: {
     handleLoggedIn(id){
       this.id = id;
     },
+    shownav(){
+      this.navvisible=true;
+      console.log("Here");
+    }
   },
 }
 </script>
@@ -46,6 +51,7 @@ export default {
   position: absolute;
   width:100%;
   background-color: black;
+  transition: .5s;
 }
 
 #nav a {
