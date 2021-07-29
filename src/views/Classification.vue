@@ -85,7 +85,7 @@ export default {
 }
 .firstblock{
     background: #f53844;
-    width:25%;
+    width:23%;
     height:70vh;
     margin:2vw;
     margin-top:15vh;
@@ -98,7 +98,7 @@ export default {
 }
 .secondblock{
     background: #0b5ce2;
-    width:25%;
+    width:23%;
     height:70vh;
     margin:2vw;
     border-radius: 1vw;
@@ -110,7 +110,7 @@ export default {
 }
 .thirdblock{
     background: #f5b338;
-    width:25%;
+    width:23%;
     height:70vh;
     margin:2vw;
     border-radius: 1vw;

@@ -39,7 +39,7 @@ export default {
                 //     this.$gAuth.instance.currentUser.get().getAuthResponse()
                 // );
                 this.$emit('loggedIn', googleUser.getBasicProfile().getEmail());
-                this.$router.push({name: 'Home', params: {userId: this.user}});
+                this.$router.push({name: 'CreateCard', params: {userId: this.user}});
             } catch (error) {
                 //on fail do something
                 console.error(error);
@@ -87,7 +87,7 @@ export default {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin: 50px 0;
+    margin-top:30vh;
 }
 .login_title{
     color: white;
