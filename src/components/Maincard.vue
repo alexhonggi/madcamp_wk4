@@ -56,6 +56,7 @@ import {getAllData, getUserIdByName, onLike} from '../firebase.js';
         console.log(doc.data());
       }
     })
+    this.users.sort(()=>Math.random()-0.5);
     this.users.forEach(user=>{
       if(user.profession==="Designer"){
         this.colorlist.push(this.profclass[0]);
