@@ -1,6 +1,6 @@
 <template>
     <div>
-        <input-form @shownav="shownav" :userId="userId"></input-form>
+        <input-form @shownav="shownav" v-if="userId" :userId="userId"></input-form>
     </div>
 </template>
 <script>
@@ -11,6 +11,11 @@ import Login from '../components/Login.vue';
 export default {
   components: {
     InputForm, Login
+  },
+  data(){
+    return {
+      userId: '',
+    }
   },
   mounted(){
     this.userId = this.$route.params.userId;

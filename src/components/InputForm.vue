@@ -48,7 +48,7 @@
     </form>
 </template>
 <script>
-import {createUser, uploadFile} from '../firebase.js';
+import {createUser, uploadFile, getUser} from '../firebase.js';
 
 export default {
     data(){
@@ -70,6 +70,21 @@ export default {
     },
     props:{
         userId:String,
+    },
+    async mounted(){
+        const cardExist = await getUser(this.userId);
+        console.log(this.userId)
+        if(cardExist != null){
+            this.name = cardExist.name;
+            this.profession = cardExist.profession;
+            this.phonenumber = cardExist.phonenumber;
+            this.email = cardExist.email;
+            this.description = cardExist.description;
+            this.dream = cardExist.dream;
+            console.log('Exist')
+        }else{
+            console.log('asd')
+        }
     },
     methods: {
         async submitUser(){
