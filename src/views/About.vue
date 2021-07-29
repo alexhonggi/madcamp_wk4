@@ -25,5 +25,6 @@ export default {
 <style scoped>
 .about{
   padding-top:7.5vh;
+  background-color: #222222;
 }
 </style>
