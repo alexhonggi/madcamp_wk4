@@ -69,8 +69,24 @@ export default {
     console.log(googleId);
     const user = await getUser(googleId);
     const likes = user.like;
-    const dataList = await getLikes(likes);
+    let dataList = [];
+    for(var like in likes){
+      const otherUser = await getUser(likes[like]);
+      if(otherUser.like.includes(googleId)){
+        dataList.push(otherUser);
+        console.log('added')
+      }
+    };
+    // likes.forEach(async (other)=>{
+    //   const otherUser = await getUser(other);
+    //   if(otherUser.like.includes(googleId)){
+    //     dataList.push(otherUser);
+    //     console.log('added')
+    //   }
+    // });
+    // const dataList = await getLikes(bothLikes);
     this.userData = dataList;
+    console.log(this.userData);
     this.flipanimationList=Array(this.userData.length).fill('none')
     this.dataReady = true;
   },
