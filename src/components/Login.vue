@@ -14,6 +14,8 @@
 </template>
 <script>
 import { inject, toRefs } from "vue";
+import {getUser} from '../firebase.js';
+
 export default {
     data() {
         return {
@@ -33,7 +35,14 @@ export default {
                 this.user = googleUser.getBasicProfile().getEmail();
                 console.log("getBasicProfile", googleUser.getBasicProfile());
                 this.$emit('loggedIn', googleUser.getBasicProfile().getEmail());
-                this.$router.push({name: 'CreateCard', params: {userId: this.user}});
+                const cardExist = getUser(this.user);
+                console.log(cardExist);
+                if(cardExist == null){
+                    this.$router.push({name: 'CreateCard', params: {userId: this.user}});
+                } else {
+                    this.$emit('shownav');
+                    this.$router.push({name: 'Home', params: {userId: this.user}});
+                }
             } catch (error) {
                 //on fail do something
                 console.error(error);
