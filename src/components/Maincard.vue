@@ -134,12 +134,15 @@ import {getAllData, getUserIdByName, onLike} from '../firebase.js';
 
 .shadowRed {
   text-shadow: 3px 3px #f53844;
+  box-shadow: -3px -3px 1px 3.0px inset #bd8621;
 }
 .shadowBlue {
   text-shadow: 3px 3px #0b4fb6;
+  box-shadow: -3px -3px 1px 3.0px inset #742131; 
 }
 .shadowYellow {
   text-shadow: 2.5px 2.5px #f5b338;
+  box-shadow: -3px -3px 1px 3.0px inset #052050;
 }
 
 .nextFront{
@@ -156,7 +159,7 @@ import {getAllData, getUserIdByName, onLike} from '../firebase.js';
   -webkit-backface-visibility: hidden;  /* Chrome, Safari, Opera */
   backface-visibility: hidden;
   border-radius: 20px;
-  box-shadow: -3px -3px 1px 3.0px inset #742131;
+  /* box-shadow: -3px -3px 1px 3.0px inset #742131; */
   font-size: 58px;
   font-family: 'Montserrat', sans-serif;
   text-align: left;
@@ -178,7 +181,7 @@ import {getAllData, getUserIdByName, onLike} from '../firebase.js';
   -webkit-backface-visibility: hidden;  /* Chrome, Safari, Opera */
   backface-visibility: hidden;
   border-radius: 20px;
-  box-shadow: -3px -3px 0px 2.0px inset #4d4d4d;
+  /* box-shadow: -3px -3px 0px 2.0px inset #4d4d4d; */
     font-size: 58px;
   font-family: 'Montserrat', sans-serif;
   text-align: left;
@@ -198,7 +201,7 @@ import {getAllData, getUserIdByName, onLike} from '../firebase.js';
   top:16vh;
   position: absolute;
   border-radius: 20px;
-  box-shadow: -3px -3px 1px 3.0px inset #052050;
+  /* box-shadow: -3px -3px 1px 3.0px inset #052050; */
   font-size: 58px;
   font-family: 'Montserrat', sans-serif;
   text-align: left;
