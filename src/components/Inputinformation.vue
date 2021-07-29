@@ -1,91 +1,41 @@
 <template>
-  <div class="myNamecard">
-      <header class="myHeader header-card white-underline-links">
-        <h2 class="header-card-title">Your <br />Namecard <br /> Collection</h2>
-        <p class="header-card-sponsor">
-          Made by<br />
-          <a href="https://alexhonggi.github.io/">{{userId}}</a>
-        </p>
-      </header>
-      
-      <div class="name-card-grid" v-if="dataReady">
-        <article
-          class="name-card module module-article article"
-          id="name-post-302186"
-          v-for="user in userData"
-          :key="user.name"
-        >
-        <div class="container">
-          <header class="name-article-card-header">
-            <div class="name-article-card-title">
-              <div class="name-article-subhead">
-                Collected at 
-                <time datetime="2020-01-28"> Jan 28, 2020 </time>
+  <div class="myNamecard">      
+    <div class="name-card-grid" v-if="dataReady">
+      <article
+        class="name-card module module-article article"
+        id="name-post-302186"
+        v-for="user in userData"
+        :key="user.name"
+      >
+      <div class="container">
+        <header class="name-article-card-header">
+          <div class="name-article-card-title">
+            <h2 class="">
+              <div class="article-card-header read-article">
+                {{user.name}}
               </div>
-              <h2 class="">
-                <a
-                  href="https://css-tricks.com/use-and-reuse-everything-in-svg-even-animations/"
-                  class="article-card-header read-article"
-                >
-                  {{user.name}}
-                </a>
-              </h2>
-            </div>
-            <div class="name-article-meta">
-            <div class="name-article-byline">
-              <div class="author-avatar">
-                <a
-                  class="author-name"
-                  href="https://css-tricks.com/author/marianabeldi/"
-                >
-                  <img
-                    alt=""
-                    :src="user.profileImage"
-                    class="
-                      avatar avatar-80
-                      photo
-                      jetpack-lazy-image jetpack-lazy-image--handled
-                    "
-                    height="80"
-                    width="80"
-                    srcset=" "
-                    data-lazy-loaded="1"
-                  /><noscript
-                    ><img
-                      alt=""
-                      src="https://secure.gravatar.com/avatar/d478c83f5a06bd37f7087e19478b74bf?s=80&#038;d=retro&#038;r=pg"
-                      srcset="
-                        https://secure.gravatar.com/avatar/d478c83f5a06bd37f7087e19478b74bf?s=160&#038;d=retro&#038;r=pg 2x
-                      "
-                      class="avatar avatar-80 photo"
-                      height="80"
-                      width="80"
-                  /></noscript>
-                </a>
-                <svg class="half-circle" width="80px" height="80px">
-                  <use xlink:href="#half-circle"></use>
-                </svg>
-              </div>
-            </div>
-            <div class="author-name-area">
-                <div class="author-name-prefix">Job</div>
-                <a
-                  class="author-name"
-                  href="https://css-tricks.com/author/marianabeldi/"
-                >
-                  {{user.profession}}
-                </a>
-              </div>
+            </h2>
           </div>
-          </header>
+          <div class="name-article-meta">
+          <div class="name-article-byline">
+            <div class="author-avatar">
+              <img
+                alt=""
+                :src="user.profileImage"
+                srcset=" "
+                data-lazy-loaded="1"
+              />
+            </div>
           </div>
-        </article>
-      </div>
-      <div v-else>
-        <h1>else</h1>
-      </div>
+          <h2 class="author-name-area">
+            {{user.profession}}
+          </h2>
+        </div>
+        </header>
+        </div>
+      </article>
     </div>
-  
+  </div>
 </template>
 
 <script>
@@ -103,18 +53,6 @@ export default {
     }
   },
   async mounted(){
-    // let googleId;
-    // setTimeout(async ()=>{
-    //   googleId = this.$gAuth.instance.currentUser.get().getBasicProfile().getEmail();
-    //   console.log(googleId);
-    //   const user = await getUser(googleId);
-    //   const likes = user.like;
-    //   const dataList = await getLikes(likes);
-    //   this.userData = dataList;
-    //   console.log(dataList);
-    //   console.log(this.userData);
-    //   this.dataReady = true;
-    // }, 1500);
     let googleId = this.userId;
     console.log(googleId);
     const user = await getUser(googleId);
@@ -169,21 +107,7 @@ a {
   color: #fff;
 }
 a:not(.button):not(.commentPreviewButton):not(.comment-reply-link):focus,
-a:not(.button):not(.commentPreviewButton):not(.comment-reply-link):hover {
-  /* background: -webkit-gradient(
-    linear,
-    left top,
-    right top,
-    from(#ff8a00),
-    to(#e52e71)
-  );
-  background: linear-gradient(90deg, #ff8a00, #e52e71);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  -webkit-box-decoration-break: clone;
-  box-decoration-break: clone;
-  text-shadow: none; */
-}
+a:not(.button):not(.commentPreviewButton):not(.comment-reply-link):hover
 h2 {
   font-weight: 900;
   margin: 0 0 1.5rem;
@@ -191,24 +115,13 @@ h2 {
   line-height: 1;
 }
 /* 이름 */
-h2 a {
+h2{
   color: #d4ccca;
   border: 0;
   font-size: 38px;
   font-family: 'Noto Sans KR', sans-serif;
   font-weight: bold;
   display: inline-block;
-}
-h2 a:focus,
-h2 a:hover {
-  color: #03a9f4;
-}
-h2 {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif, Sans-Serif;
-  font-style: bold;
-  font-size: 2rem;
-  letter-spacing: -0.03rem;
-  font-weight: 400;
 }
 @media (max-width: 1200px) {
   h2 {
@@ -296,13 +209,11 @@ img {
   align-self: start;
   position: relative;
 }
-.author-avatar img {
-  border-radius: 50%;
-  width: 160px;
-  height: 160px !important;
+.author-avatar, img{
+  width: 200px;
+  height: 160px;
   display: block;
   overflow: hidden;
-  margin: 1px 55px;
 }
 .author-avatar .half-circle {
   position: absolute;
@@ -310,6 +221,7 @@ img {
   left: 0;
   width: 180px;
   height: 156px;
+  margin: 1px 55px;
   fill: none;
   stroke: url(https://css-tricks.com/wp-content/themes/CSS-Tricks-17/style.css?cache_bust=1580767355603#orange-to-pink);
   stroke-width: 8;
@@ -326,13 +238,6 @@ img {
     height: 40px;
   }
 }
-.author-name-prefix {
-  font-family: Ringside Regular A, Ringside Regular B, Rubik, Lato,
-    Lucida Grande, Lucida Sans Unicode, Tahoma, Sans-Serif;
-  font-style: normal;
-  font-weight: 700;
-  color: #7a7a8c;
-}
 .author-name-area {
   grid-area: author;
   margin: 50px;
@@ -345,58 +250,6 @@ time {
 }
 .author-name {
     margin: 0px;
-}
-/* .tags {
-  margin: 1rem 0 2rem;
-  padding: 0.5rem 0 1rem;
-  line-height: 2;
-}
-@media (max-width: 800px) {
-  .tags {
-    margin: 0;
-  }
-}
-.tags a {
-  color: #7a7a8c;
-  text-transform: uppercase;
-  font-size: 0.66rem;
-  white-space: nowrap;
-  border: 3px solid #28242f;
-  border-radius: 2rem;
-  padding: 0.2rem 0.85rem 0.25rem;
-}
-.tags a:focus,
-.tags a:hover {
-  color: #03a9f4;
-  border-color: #fff;
-  position: relative;
-} */
-.header-card {
-  background-image: -webkit-gradient(
-    linear,
-    left bottom,
-    left top,
-    from(#ff8a00),
-    to(#e52e71)
-  );
-  background-image: linear-gradient(0deg, #ff8a00, #e52e71);
-  position: relative;
-  border-radius: 16px;
-  padding: 2rem;
-  margin: 0 4rem 0 0;
-  display: -webkit-box;
-  display: flex;
-  -webkit-box-pack: end;
-  justify-content: flex-end;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-  flex-direction: column;
-  -webkit-box-flex: 0;
-  flex: 0 0 320px;
-}
-.header-card p {
-  margin: 0;
-  font-size: 0.8rem;
 }
 @media (max-width: 1200px) {
   .header-card {
@@ -424,8 +277,9 @@ time {
   box-sizing: content-box;
   display: -webkit-box;
   display: flex;
-  width: calc(100vw - 71px);
-  margin: 0 0 5rem;
+  width: calc(90vw);
+  margin-top:15vh;
+  margin-left:3vw;
   padding: 2rem 0;
 }
 @media (max-width: 1200px) {
@@ -477,27 +331,14 @@ time {
   color: #ffb4b4;
 }
 .name-card-grid {
-  scrollbar-color: #54525a;
-  scrollbar-width: 10px;
-  scrollbar-gutter: always;
   padding: 3rem;
-  display: -webkit-box;
   display: flex;
-  overflow-x: scroll;
+  overflow-x: auto;
   -webkit-overflow-scrolling: touch;
+  -ms-overflow-style:none;
 }
-.name-card-grid::-webkit-scrollbar {
-  width: 10px;
-  height: 10px;
-}
-.name-card-grid::-webkit-scrollbar-thumb {
-  background: #201c29;
-  border-radius: 10px;
-  box-shadow: inset 2px 2px 2px hsla(0, 0%, 100%, 0.25),
-    inset -2px -2px 2px rgba(0, 0, 0, 0.25);
-}
-.name-card-grid::-webkit-scrollbar-track {
-  background: linear-gradient(90deg, #201c29, #201c29 1px, #17141d 0, #17141d);
+.name-card-grid::-webkit-scrollbar{
+  display:none;
 }
 @media (max-width: 1200px) {
   .name-card-grid {
@@ -513,7 +354,8 @@ time {
 }
 /* 카드 메인 */
 .name-card {
-  width: 300px;
+  align-items: center;
+  min-width: 300px;
   min-height: 450px;
   padding: 1.5rem;
   border-radius: 16px;
@@ -618,16 +460,5 @@ time {
   grid-area: auto;
   margin: 0px
 }
-/* @media print {
-  .tags,
-  svg {
-    display: none !important;
-  }
-  a,
-  time {
-    background: 0 0 !important;
-    color: #000 !important;
-  }
-} */
 
 </style>
