@@ -99,7 +99,8 @@ export default {
 :after,
 :before {
   box-sizing: border-box;
-  font-family: 'Apple SD Gothic', sans-serif;
+  font-size: 40px;
+  font-family: 'Montserrat', sans-serif;
 }
 a {
   text-decoration: none;
@@ -127,12 +128,13 @@ h1{
   font-weight: 1000;
   color: #d4ccca;
   font-size:45px;
+  font-family: 'Montserrat', sans-serif;
   line-height: 0.2;
 }
 h2 {
   font-weight: 900;
   margin: 0 0 1.5rem;
-  font-family: 'Noto Sans KR', sans-serif;
+  font-family: 'Montserrat', sans-serif;
   line-height: 1;
   max-width: 300px;
 }
@@ -140,8 +142,7 @@ h2 {
 h2{
   color: #d4ccca;
   border: 0;
-  font-size: 38px;
-  font-family: 'Noto Sans KR', sans-serif;
+  font-size: 38px;font-family: 'Montserrat', sans-serif;
   font-weight: bold;
   display: inline-block;
 }
@@ -188,10 +189,11 @@ img {
   display: table-cell;
   height: 300px;
   vertical-align: middle;  
+  margin: auto;
 }
 .author-name-area {
   grid-area: author;
-  margin: 50px;
+  margin: auto;
 }
 .author-name,
 time {
@@ -292,9 +294,11 @@ time {
   -webkit-transition: 0.2s;
   transition: 0.2s;
   margin: 0;
+  
 }
 .name-card h2 {
   font-size: 25px;
+  font-family: 'Montserrat', sans-serif;
   margin: 0.25rem 0 auto;
 }
 .name-card:not(:first-child) {
