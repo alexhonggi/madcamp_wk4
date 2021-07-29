@@ -4,35 +4,46 @@
       <article
         class="name-card module module-article article"
         id="name-post-302186"
-        v-for="user in userData"
+        v-for="(user) in userData"
         :key="user.name"
       >
-      <div class="container">
-        <header class="name-article-card-header">
-          <div class="name-article-card-title">
-            <h2 class="">
-              <div class="article-card-header read-article">
-                {{user.name}}
+        <div class="container">
+          <header class="name-article-card-header">
+            <div class="name-article-card-title">
+              <h1 class="">
+                <div class="article-card-header read-article">
+                  {{user.name}}
+                </div>
+              </h1>
+            </div>
+            <div class="name-article-meta">
+            <div class="name-article-byline">
+              <div class="author-avatar">
+                <img
+                  alt=""
+                  :src="user.profileImage"
+                  data-lazy-loaded="1"
+                />
               </div>
+            </div>
+            <h2 class="author-name-area">
+              {{user.profession}}
+            </h2>
+            <br>
+            <h2 class="author-name-area">
+              {{user.phonenumber}}
+            </h2>
+            <br>
+            <h2 class="author-name-area">
+              {{user.email}}
+            </h2>
+            <br>
+            <h2 class="author-name-area">
+              {{user.dream}}
             </h2>
           </div>
-          <div class="name-article-meta">
-          <div class="name-article-byline">
-            <div class="author-avatar">
-              <img
-                alt=""
-                :src="user.profileImage"
-                srcset=" "
-                data-lazy-loaded="1"
-              />
-            </div>
-          </div>
-          <h2 class="author-name-area">
-            {{user.profession}}
-          </h2>
-        </div>
         </header>
-        </div>
+      </div>
       </article>
     </div>
   </div>
@@ -50,6 +61,7 @@ export default {
     return {
       userData: [],
       dataReady: false,
+      flipanimationList:[],
     }
   },
   async mounted(){
@@ -59,9 +71,17 @@ export default {
     const likes = user.like;
     const dataList = await getLikes(likes);
     this.userData = dataList;
-    console.log(dataList);
-    console.log(this.userData);
+    this.flipanimationList=Array(this.userData.length).fill('none')
     this.dataReady = true;
+  },
+  methods: {
+    clickAnimation(idx){
+      if(this.flipanimationList[idx]==='cardflip'){
+        this.flipanimationList[idx]='nocardflip';
+      }else{
+        this.flipanimationList[idx]='cardflip';
+      }
+    }
   },
 }
 </script>
@@ -103,16 +123,18 @@ img {
     scroll-behavior: auto !important;
   }
 }
-a {
-  color: #fff;
+h1{
+  font-weight: 1000;
+  color: #d4ccca;
+  font-size:45px;
+  line-height: 0.2;
 }
-a:not(.button):not(.commentPreviewButton):not(.comment-reply-link):focus,
-a:not(.button):not(.commentPreviewButton):not(.comment-reply-link):hover
 h2 {
   font-weight: 900;
   margin: 0 0 1.5rem;
   font-family: 'Noto Sans KR', sans-serif;
   line-height: 1;
+  max-width: 300px;
 }
 /* 이름 */
 h2{
@@ -133,58 +155,11 @@ h2{
     font-size: 1.7rem;
   }
 }
-.h4 {
-  font-family: Ringside Regular A, Ringside Regular B, Rubik, Lato,
-    Lucida Grande, Lucida Sans Unicode, Tahoma, Sans-Serif;
-  font-style: normal;
-  font-weight: 700;
-  font-size: 1.5rem;
-  margin: 0 0 0.8rem;
-}
-@media (max-width: 1200px) {
-  .h4 {
-    font-size: 1.4rem;
-  }
-}
-@media (max-width: 800px) {
-  .h4 {
-    font-size: 1.25rem;
-  }
-}
-.h4 {
-  line-height: 1.05;
-}
 time {
   color: #a0a0b7;
 }
 p {
   margin: 0 0 1.5rem;
-}
-/* Sponsered by 부분 */
-.white-underline-links a {
-  position: relative;
-  font-weight: 700;
-}
-.white-underline-links a:after {
-  content: "";
-  height: 2px;
-  background: #fff;
-  width: 100%;
-  position: absolute;
-  bottom: -2px;
-  left: 0;
-  border-radius: 2px;
-}
-
-.white-underline-links a:focus,
-.white-underline-links a:hover {
-  color: inherit !important;
-  -webkit-text-fill-color: inherit !important;
-}
-.white-underline-links a:focus:after,
-.white-underline-links a:hover:after {
-  -webkit-transform: translateY(1px);
-  transform: translateY(1px);
 }
 p:empty {
   display: none;
@@ -199,44 +174,20 @@ p:empty {
   margin-bottom: 0;
 }
 img {
-  height: auto !important;
-}
-img {
-  max-width: 100%;
+  max-width: 80%;
+  height: 80% !important;
+  object-fit: cover;
+  display: block;
+  margin: auto;
+  border-radius: 50%;
 }
 .author-avatar {
-  grid-area: avatar;
-  align-self: start;
-  position: relative;
-}
-.author-avatar, img{
-  width: 200px;
-  height: 160px;
-  display: block;
-  overflow: hidden;
-}
-.author-avatar .half-circle {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 180px;
-  height: 156px;
-  margin: 1px 55px;
-  fill: none;
-  stroke: url(https://css-tricks.com/wp-content/themes/CSS-Tricks-17/style.css?cache_bust=1580767355603#orange-to-pink);
-  stroke-width: 8;
-  stroke-linecap: round;
-  pointer-events: none;
-}
-@media (max-width: 800px) {
-  .author-avatar img {
-    width: 35px;
-    height: 35px !important;
-  }
-  .author-avatar .half-circle {
-    width: 55px;
-    height: 40px;
-  }
+  text-align: center;
+  width:300px;
+  vertical-align: middle;
+  display: table-cell;
+  height: 300px;
+  vertical-align: middle;  
 }
 .author-name-area {
   grid-area: author;
@@ -251,35 +202,13 @@ time {
 .author-name {
     margin: 0px;
 }
-@media (max-width: 1200px) {
-  .header-card {
-    -webkit-writing-mode: vertical-rl;
-    -ms-writing-mode: tb-rl;
-    writing-mode: vertical-rl;
-    -webkit-transform: rotate(180deg);
-    transform: rotate(180deg);
-    -webkit-box-flex: 0;
-    flex: 0;
-    width: 110px;
-    margin-right: 1rem;
-  }
-  .header-card a:after,
-  .header-card br {
-    display: none;
-  }
-}
-/* 헤더 제목 */
-.header-card-title {
-  font-size: 1.8rem;
-  margin: 0 0 0.8rem;
-}
 .myNamecard {
   box-sizing: content-box;
   display: -webkit-box;
   display: flex;
   width: calc(90vw);
-  margin-top:15vh;
-  margin-left:3vw;
+  margin-top:10vh;
+  margin-left:4.5vw;
   padding: 2rem 0;
 }
 @media (max-width: 1200px) {
@@ -324,12 +253,6 @@ time {
     padding-left: 0;
   }
 }
-.myHeader {
-  margin: 3rem 0;
-}
-.header-card-sponsor {
-  color: #ffb4b4;
-}
 .name-card-grid {
   padding: 3rem;
   display: flex;
@@ -355,8 +278,8 @@ time {
 /* 카드 메인 */
 .name-card {
   align-items: center;
-  min-width: 300px;
-  min-height: 450px;
+  min-width: 500px;
+  min-height: 750px;
   padding: 1.5rem;
   border-radius: 16px;
   background: #36333b;
@@ -426,39 +349,24 @@ time {
   margin: 0 0 1rem;
 }
 .name-article-card-header {
-    
   margin-bottom: auto;
 }
 /* 밑 이름, Author */
 .name-article-meta {
   font-size: 16px;
+  line-height: 60px;
 }
 .name-article-meta .author-name {
   display: block;
   position: relative;
   width:150px; /* 참고 */
+  align-items: center;
   margin: 5px 0 auto;
 }
-/* 아바타 이미지 */ 
-.name-article-meta .author-avatar img {
-  width: 140px !important;
-  height: 140px !important;
-}
-.name-article-meta .author-avatar .half-circle {
-  width: 160px;
-  height: 148px;
-}
 .name-article-byline {
-  margin:30px 0 0;
-  display: grid;
-  grid-template-columns: 0px;
+  margin-top: 10px;
   -webkit-box-align: center;
   align-items: center;
-}
-.name-article-byline .author-avatar,
-.name-article-byline .author-name-area {
-  grid-area: auto;
-  margin: 0px
 }
 
 </style>

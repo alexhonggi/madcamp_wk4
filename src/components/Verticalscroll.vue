@@ -152,7 +152,7 @@ export default {
 .frontcard {
   background-color: #ffffff;
   position: absolute;
-  width: calc(18vw - 2px);
+  width: calc(18vw);
   height: 25vw;
   -webkit-column-break-inside: avoid;
   -moz-column-break-inside: avoid;

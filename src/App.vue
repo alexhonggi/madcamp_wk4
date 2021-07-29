@@ -1,11 +1,10 @@
 <template>
   <body >
     <div id="nav">
-      <router-link to='/login'>Login</router-link> |
       <router-link :to='{name: "Home", params: {userId: this.id}}'>Home</router-link> |
-      <router-link :to='{name: "About", params: {userId: this.id}}'>About</router-link> |
-      <router-link to="/card">Card</router-link> |
-      <router-link :to='{name: "Classification", params: {userId: this.id}}'>Classification</router-link>
+      <router-link :to='{name: "About", params: {userId: this.id}}'>My Cards</router-link> |
+      <router-link to="/card">Create Card</router-link> |
+      <router-link :to='{name: "Classification", params: {userId: this.id}}'>Search</router-link>
       <!--
         <router-link to="/manager" class="manager" >Manager</router-link> |
         <router-link to="/developer" class="developer">Developer</router-link> |
