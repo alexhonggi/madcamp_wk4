@@ -3,7 +3,7 @@
     <div id="nav" v-if="navvisible">
       <router-link :to='{name: "Home", params: {userId: this.id}}'>Home</router-link> |
       <router-link :to='{name: "About", params: {userId: this.id}}'>My Cards</router-link> |
-      <router-link to="/card">Edit Card</router-link> |
+      <router-link :to='{name: "CreateCard", params: {userId: this.id}}'>Edit Card</router-link> |
       <router-link :to='{name: "Classification", params: {userId: this.id}}'>Search</router-link>
       <!--
         <router-link to="/manager" class="manager" >Manager</router-link> |
