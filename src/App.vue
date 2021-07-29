@@ -3,7 +3,7 @@
     <div id="nav" v-if="navvisible">
       <router-link :to='{name: "Home", params: {userId: this.id}}'>Home</router-link> |
       <router-link :to='{name: "About", params: {userId: this.id}}'>My Cards</router-link> |
-      <router-link to="/card">Create Card</router-link> |
+      <router-link to="/card">Edit Card</router-link> |
       <router-link :to='{name: "Classification", params: {userId: this.id}}'>Search</router-link>
       <!--
         <router-link to="/manager" class="manager" >Manager</router-link> |
@@ -50,13 +50,13 @@ export default {
   padding: 2.5vh;
   position: absolute;
   width:100%;
-  background-color: black;
+  background-color: #111111;  
   transition: .5s;
 }
 
 #nav a {
-  font-weight: bold;
-  font-size: 22px;
+  font-weight: 800;
+  font-size: 20px;
   color: #ffffff;
 }
 
@@ -68,7 +68,7 @@ export default {
 body{
   height:100%;
   width:100%;
-  background: #2b2b2b;
+  background: #111111;
   scroll-behavior: smooth;
   overflow-x: hidden;
   overflow-y: auto;

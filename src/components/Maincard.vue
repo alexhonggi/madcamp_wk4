@@ -51,6 +51,7 @@ import {getAllData} from '../firebase.js';
     allUser.forEach(doc=>{
       if(doc.id != this.userId){
         this.users.push(doc.data());
+        console.log(doc.data());
       }
     })
     this.users.forEach(user=>{
